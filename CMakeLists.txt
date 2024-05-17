@@ -16,10 +16,14 @@ project(threebolt VERSION 0.0.1)
 find_package(antlr4-runtime CONFIG REQUIRED)
 
 # exe
-add_executable(threebolt src/main.cpp)
+add_executable(threebolt 
+    src/generated/threeboltBaseVisitor.cpp src/generated/threeboltLexer.cpp src/generated/threeboltParser.cpp src/generated/threeboltVisitor.cpp
+    src/main.cpp src/examplevisitor.cpp
+)
 
 # Include directories for ANTLR4 runtime
 target_include_directories(threebolt PRIVATE ${ANTLR4_INCLUDE_DIR})
+target_include_directories(threebolt PRIVATE include src/generated)
 
 # linking
 target_link_libraries(threebolt PRIVATE antlr4_static)
