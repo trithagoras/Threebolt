@@ -2,6 +2,7 @@
 // Generated from /home/corey/code/cpp/threebolt/threebolt.g4 by ANTLR 4.13.1
 
 
+#include "threeboltListener.h"
 #include "threeboltVisitor.h"
 
 #include "threeboltParser.h"
@@ -206,6 +207,18 @@ size_t threeboltParser::ProgramContext::getRuleIndex() const {
   return threeboltParser::RuleProgram;
 }
 
+void threeboltParser::ProgramContext::enterRule(tree::ParseTreeListener *listener) {
+  auto parserListener = dynamic_cast<threeboltListener *>(listener);
+  if (parserListener != nullptr)
+    parserListener->enterProgram(this);
+}
+
+void threeboltParser::ProgramContext::exitRule(tree::ParseTreeListener *listener) {
+  auto parserListener = dynamic_cast<threeboltListener *>(listener);
+  if (parserListener != nullptr)
+    parserListener->exitProgram(this);
+}
+
 
 std::any threeboltParser::ProgramContext::accept(tree::ParseTreeVisitor *visitor) {
   if (auto parserVisitor = dynamic_cast<threeboltVisitor*>(visitor))
@@ -320,6 +333,18 @@ size_t threeboltParser::ImportStmtContext::getRuleIndex() const {
   return threeboltParser::RuleImportStmt;
 }
 
+void threeboltParser::ImportStmtContext::enterRule(tree::ParseTreeListener *listener) {
+  auto parserListener = dynamic_cast<threeboltListener *>(listener);
+  if (parserListener != nullptr)
+    parserListener->enterImportStmt(this);
+}
+
+void threeboltParser::ImportStmtContext::exitRule(tree::ParseTreeListener *listener) {
+  auto parserListener = dynamic_cast<threeboltListener *>(listener);
+  if (parserListener != nullptr)
+    parserListener->exitImportStmt(this);
+}
+
 
 std::any threeboltParser::ImportStmtContext::accept(tree::ParseTreeVisitor *visitor) {
   if (auto parserVisitor = dynamic_cast<threeboltVisitor*>(visitor))
@@ -407,6 +432,18 @@ threeboltParser::TypeContext* threeboltParser::FunctionDeclContext::type() {
 
 size_t threeboltParser::FunctionDeclContext::getRuleIndex() const {
   return threeboltParser::RuleFunctionDecl;
+}
+
+void threeboltParser::FunctionDeclContext::enterRule(tree::ParseTreeListener *listener) {
+  auto parserListener = dynamic_cast<threeboltListener *>(listener);
+  if (parserListener != nullptr)
+    parserListener->enterFunctionDecl(this);
+}
+
+void threeboltParser::FunctionDeclContext::exitRule(tree::ParseTreeListener *listener) {
+  auto parserListener = dynamic_cast<threeboltListener *>(listener);
+  if (parserListener != nullptr)
+    parserListener->exitFunctionDecl(this);
 }
 
 
@@ -497,6 +534,18 @@ size_t threeboltParser::ParametersContext::getRuleIndex() const {
   return threeboltParser::RuleParameters;
 }
 
+void threeboltParser::ParametersContext::enterRule(tree::ParseTreeListener *listener) {
+  auto parserListener = dynamic_cast<threeboltListener *>(listener);
+  if (parserListener != nullptr)
+    parserListener->enterParameters(this);
+}
+
+void threeboltParser::ParametersContext::exitRule(tree::ParseTreeListener *listener) {
+  auto parserListener = dynamic_cast<threeboltListener *>(listener);
+  if (parserListener != nullptr)
+    parserListener->exitParameters(this);
+}
+
 
 std::any threeboltParser::ParametersContext::accept(tree::ParseTreeVisitor *visitor) {
   if (auto parserVisitor = dynamic_cast<threeboltVisitor*>(visitor))
@@ -567,6 +616,18 @@ size_t threeboltParser::ParameterContext::getRuleIndex() const {
   return threeboltParser::RuleParameter;
 }
 
+void threeboltParser::ParameterContext::enterRule(tree::ParseTreeListener *listener) {
+  auto parserListener = dynamic_cast<threeboltListener *>(listener);
+  if (parserListener != nullptr)
+    parserListener->enterParameter(this);
+}
+
+void threeboltParser::ParameterContext::exitRule(tree::ParseTreeListener *listener) {
+  auto parserListener = dynamic_cast<threeboltListener *>(listener);
+  if (parserListener != nullptr)
+    parserListener->exitParameter(this);
+}
+
 
 std::any threeboltParser::ParameterContext::accept(tree::ParseTreeVisitor *visitor) {
   if (auto parserVisitor = dynamic_cast<threeboltVisitor*>(visitor))
@@ -630,6 +691,18 @@ threeboltParser::StatementContext* threeboltParser::BlockContext::statement(size
 
 size_t threeboltParser::BlockContext::getRuleIndex() const {
   return threeboltParser::RuleBlock;
+}
+
+void threeboltParser::BlockContext::enterRule(tree::ParseTreeListener *listener) {
+  auto parserListener = dynamic_cast<threeboltListener *>(listener);
+  if (parserListener != nullptr)
+    parserListener->enterBlock(this);
+}
+
+void threeboltParser::BlockContext::exitRule(tree::ParseTreeListener *listener) {
+  auto parserListener = dynamic_cast<threeboltListener *>(listener);
+  if (parserListener != nullptr)
+    parserListener->exitBlock(this);
 }
 
 
@@ -709,6 +782,18 @@ threeboltParser::ExprStmtContext* threeboltParser::StatementContext::exprStmt() 
 
 size_t threeboltParser::StatementContext::getRuleIndex() const {
   return threeboltParser::RuleStatement;
+}
+
+void threeboltParser::StatementContext::enterRule(tree::ParseTreeListener *listener) {
+  auto parserListener = dynamic_cast<threeboltListener *>(listener);
+  if (parserListener != nullptr)
+    parserListener->enterStatement(this);
+}
+
+void threeboltParser::StatementContext::exitRule(tree::ParseTreeListener *listener) {
+  auto parserListener = dynamic_cast<threeboltListener *>(listener);
+  if (parserListener != nullptr)
+    parserListener->exitStatement(this);
 }
 
 
@@ -822,6 +907,18 @@ size_t threeboltParser::VariableDeclContext::getRuleIndex() const {
   return threeboltParser::RuleVariableDecl;
 }
 
+void threeboltParser::VariableDeclContext::enterRule(tree::ParseTreeListener *listener) {
+  auto parserListener = dynamic_cast<threeboltListener *>(listener);
+  if (parserListener != nullptr)
+    parserListener->enterVariableDecl(this);
+}
+
+void threeboltParser::VariableDeclContext::exitRule(tree::ParseTreeListener *listener) {
+  auto parserListener = dynamic_cast<threeboltListener *>(listener);
+  if (parserListener != nullptr)
+    parserListener->exitVariableDecl(this);
+}
+
 
 std::any threeboltParser::VariableDeclContext::accept(tree::ParseTreeVisitor *visitor) {
   if (auto parserVisitor = dynamic_cast<threeboltVisitor*>(visitor))
@@ -903,6 +1000,18 @@ size_t threeboltParser::AssignmentContext::getRuleIndex() const {
   return threeboltParser::RuleAssignment;
 }
 
+void threeboltParser::AssignmentContext::enterRule(tree::ParseTreeListener *listener) {
+  auto parserListener = dynamic_cast<threeboltListener *>(listener);
+  if (parserListener != nullptr)
+    parserListener->enterAssignment(this);
+}
+
+void threeboltParser::AssignmentContext::exitRule(tree::ParseTreeListener *listener) {
+  auto parserListener = dynamic_cast<threeboltListener *>(listener);
+  if (parserListener != nullptr)
+    parserListener->exitAssignment(this);
+}
+
 
 std::any threeboltParser::AssignmentContext::accept(tree::ParseTreeVisitor *visitor) {
   if (auto parserVisitor = dynamic_cast<threeboltVisitor*>(visitor))
@@ -966,6 +1075,18 @@ size_t threeboltParser::ReturnStmtContext::getRuleIndex() const {
   return threeboltParser::RuleReturnStmt;
 }
 
+void threeboltParser::ReturnStmtContext::enterRule(tree::ParseTreeListener *listener) {
+  auto parserListener = dynamic_cast<threeboltListener *>(listener);
+  if (parserListener != nullptr)
+    parserListener->enterReturnStmt(this);
+}
+
+void threeboltParser::ReturnStmtContext::exitRule(tree::ParseTreeListener *listener) {
+  auto parserListener = dynamic_cast<threeboltListener *>(listener);
+  if (parserListener != nullptr)
+    parserListener->exitReturnStmt(this);
+}
+
 
 std::any threeboltParser::ReturnStmtContext::accept(tree::ParseTreeVisitor *visitor) {
   if (auto parserVisitor = dynamic_cast<threeboltVisitor*>(visitor))
@@ -1027,6 +1148,18 @@ size_t threeboltParser::IfStmtContext::getRuleIndex() const {
   return threeboltParser::RuleIfStmt;
 }
 
+void threeboltParser::IfStmtContext::enterRule(tree::ParseTreeListener *listener) {
+  auto parserListener = dynamic_cast<threeboltListener *>(listener);
+  if (parserListener != nullptr)
+    parserListener->enterIfStmt(this);
+}
+
+void threeboltParser::IfStmtContext::exitRule(tree::ParseTreeListener *listener) {
+  auto parserListener = dynamic_cast<threeboltListener *>(listener);
+  if (parserListener != nullptr)
+    parserListener->exitIfStmt(this);
+}
+
 
 std::any threeboltParser::IfStmtContext::accept(tree::ParseTreeVisitor *visitor) {
   if (auto parserVisitor = dynamic_cast<threeboltVisitor*>(visitor))
@@ -1082,6 +1215,18 @@ tree::TerminalNode* threeboltParser::ExprStmtContext::SEMICOLON() {
 
 size_t threeboltParser::ExprStmtContext::getRuleIndex() const {
   return threeboltParser::RuleExprStmt;
+}
+
+void threeboltParser::ExprStmtContext::enterRule(tree::ParseTreeListener *listener) {
+  auto parserListener = dynamic_cast<threeboltListener *>(listener);
+  if (parserListener != nullptr)
+    parserListener->enterExprStmt(this);
+}
+
+void threeboltParser::ExprStmtContext::exitRule(tree::ParseTreeListener *listener) {
+  auto parserListener = dynamic_cast<threeboltListener *>(listener);
+  if (parserListener != nullptr)
+    parserListener->exitExprStmt(this);
 }
 
 
@@ -1217,6 +1362,18 @@ tree::TerminalNode* threeboltParser::ExprContext::GEQ() {
 
 size_t threeboltParser::ExprContext::getRuleIndex() const {
   return threeboltParser::RuleExpr;
+}
+
+void threeboltParser::ExprContext::enterRule(tree::ParseTreeListener *listener) {
+  auto parserListener = dynamic_cast<threeboltListener *>(listener);
+  if (parserListener != nullptr)
+    parserListener->enterExpr(this);
+}
+
+void threeboltParser::ExprContext::exitRule(tree::ParseTreeListener *listener) {
+  auto parserListener = dynamic_cast<threeboltListener *>(listener);
+  if (parserListener != nullptr)
+    parserListener->exitExpr(this);
 }
 
 
@@ -1409,6 +1566,18 @@ size_t threeboltParser::FunctionCallContext::getRuleIndex() const {
   return threeboltParser::RuleFunctionCall;
 }
 
+void threeboltParser::FunctionCallContext::enterRule(tree::ParseTreeListener *listener) {
+  auto parserListener = dynamic_cast<threeboltListener *>(listener);
+  if (parserListener != nullptr)
+    parserListener->enterFunctionCall(this);
+}
+
+void threeboltParser::FunctionCallContext::exitRule(tree::ParseTreeListener *listener) {
+  auto parserListener = dynamic_cast<threeboltListener *>(listener);
+  if (parserListener != nullptr)
+    parserListener->exitFunctionCall(this);
+}
+
 
 std::any threeboltParser::FunctionCallContext::accept(tree::ParseTreeVisitor *visitor) {
   if (auto parserVisitor = dynamic_cast<threeboltVisitor*>(visitor))
@@ -1484,6 +1653,18 @@ size_t threeboltParser::ArgumentsContext::getRuleIndex() const {
   return threeboltParser::RuleArguments;
 }
 
+void threeboltParser::ArgumentsContext::enterRule(tree::ParseTreeListener *listener) {
+  auto parserListener = dynamic_cast<threeboltListener *>(listener);
+  if (parserListener != nullptr)
+    parserListener->enterArguments(this);
+}
+
+void threeboltParser::ArgumentsContext::exitRule(tree::ParseTreeListener *listener) {
+  auto parserListener = dynamic_cast<threeboltListener *>(listener);
+  if (parserListener != nullptr)
+    parserListener->exitArguments(this);
+}
+
 
 std::any threeboltParser::ArgumentsContext::accept(tree::ParseTreeVisitor *visitor) {
   if (auto parserVisitor = dynamic_cast<threeboltVisitor*>(visitor))
@@ -1556,6 +1737,18 @@ tree::TerminalNode* threeboltParser::TypeContext::KEYWORD_BOOL() {
 
 size_t threeboltParser::TypeContext::getRuleIndex() const {
   return threeboltParser::RuleType;
+}
+
+void threeboltParser::TypeContext::enterRule(tree::ParseTreeListener *listener) {
+  auto parserListener = dynamic_cast<threeboltListener *>(listener);
+  if (parserListener != nullptr)
+    parserListener->enterType(this);
+}
+
+void threeboltParser::TypeContext::exitRule(tree::ParseTreeListener *listener) {
+  auto parserListener = dynamic_cast<threeboltListener *>(listener);
+  if (parserListener != nullptr)
+    parserListener->exitType(this);
 }
 
 
