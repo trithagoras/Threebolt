@@ -7,7 +7,7 @@ if(NOT DEFINED CMAKE_TOOLCHAIN_FILE)
         CACHE STRING "Vcpkg toolchain file")
 endif()
 
-set(CXX_STANDARD 20)
+set(CMAKE_CXX_STANDARD 20)
 set(CXX_STANDARD_REQUIRED True)
 
 project(threebolt VERSION 0.0.1)
