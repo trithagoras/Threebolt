@@ -18,6 +18,41 @@ std::string join_param_types(const std::vector<Type>& types) {
 }
 // ========================================================================
 
+// =======================Other helper functions========================
+
+bool guarantees_return(threeboltParser::BlockContext* ctx);
+bool guarantees_return(threeboltParser::StatementContext* ctx);
+
+bool guarantees_return(threeboltParser::BlockContext *ctx) {
+    for (auto stmt : ctx->statement()) {
+        if (guarantees_return(stmt)) {
+            return true;
+        }
+    }
+    return false;
+}
+
+bool guarantees_return(threeboltParser::StatementContext* stmt) {
+    if (stmt->returnStmt()) {
+        return true;
+    }
+    
+
+    if (stmt->ifStmt()) {
+        auto ifStmt = stmt->ifStmt();
+        auto thenReturn = guarantees_return(ifStmt->block());
+        auto elseReturn = ifStmt->elseStmt() && guarantees_return(ifStmt->elseStmt()->block());
+        return thenReturn && elseReturn;
+    }
+
+    // TODO: add other control flow constructs (e.g., while, for), ...
+
+    return false;
+}
+
+// ========================================================================
+
+
 std::any TypeChecker::visitType(threeboltParser::TypeContext *ctx) {
     return str_to_type(ctx->getText()); // TOOD: only works for now while there are not user defined types
 }
@@ -86,11 +121,6 @@ std::any TypeChecker::visitFunctionDecl(threeboltParser::FunctionDeclContext *ct
         currentFunction = scopeTable.get_scopes().at(s)->find_symbol(std::format("{}()", ctx->ID()->getText())).get();
     }
 
-    // auto symbol = scopeTable.get_scopes().at(s)->find_symbol(std::format("{}()", ctx->ID()->getText()));
-    // std::cout << ctx->ID()->getText() << std::endl;
-    // currentFunction = symbol.get();
-    // std::cout << "HELLO" << std::endl;
-
     auto& scope = scopeTable.get_scopes().at(longname);
 
     auto expectedType = std::any_cast<Type>(visit(ctx->type()));
@@ -99,12 +129,12 @@ std::any TypeChecker::visitFunctionDecl(threeboltParser::FunctionDeclContext *ct
 
     visit(ctx->block());
 
-    // auto actualType = std::any_cast<Type>(visit(ctx->block()));
-
-    // auto retT = coerce(actualType, expectedType);
-    // if (retT == Type::UNKNOWN) {
-    //     errorLogger.logError(std::format("Cannot coerce function declaration expected type {} with actual type {}", type_to_str(expectedType), type_to_str(actualType)), ctx->getStart()->getLine(), ctx->getStart()->getCharPositionInLine());
-    // }
+    if (!guarantees_return(ctx->block()) && expectedType != Type::VOID) {
+        errorLogger.logError(
+            std::format("Function {} is expected to return {}, but not all control paths return a value.", ctx->ID()->getText(), type_to_str(expectedType)),
+            ctx->getStart()->getLine(), ctx->getStart()->getCharPositionInLine()
+        );
+    }
 
     // pop out of scope
     longname = s;
@@ -327,7 +357,7 @@ std::any TypeChecker::visitReturnStmt(threeboltParser::ReturnStmtContext *ctx) {
     auto retT = ctx->expr() ? std::any_cast<Type>(visit(ctx->expr())) : Type::VOID;
     std::cout << type_to_str(retT) << std::endl;
 
-    if (retT != currentFunction->type) {
+    if (coerce(retT, currentFunction->type) != currentFunction->type) {
         errorLogger.logError(std::format("Cannot coerce function declaration expected type {} with actual type {}", type_to_str(currentFunction->type), type_to_str(retT)), ctx->getStart()->getLine(), ctx->getStart()->getCharPositionInLine());
     }
 

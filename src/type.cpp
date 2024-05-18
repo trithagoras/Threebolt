@@ -19,6 +19,8 @@ Type str_to_type(const std::string& type) {
         return Type::CHAR;
     } else if (type == "void") {
         return Type::VOID;
+    } else if (type == "bool") {
+        return Type::BOOL;
     }
     return Type::UNKNOWN;
 }
@@ -33,6 +35,8 @@ std::string type_to_str(Type type) {
             return "float";
         case Type::VOID:
             return "void";
+        case Type::BOOL:
+            return "bool";
         default:
             return "unknown";
     }

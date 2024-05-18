@@ -7,15 +7,16 @@ fn sum(x: int, y: float) -> float {
 fn main() -> void {
     let x := 5;
     let y := 6;
+    let q := true;
     println(x + y);
     return;
 }
 
-fn slightly_complex(x: int) -> float {
-    let y := x + 5.0;
-
-    if y >= 5.0 {
-        return y > 5.5;
+fn slightly_complex(x: int) -> bool {
+    if x > 10 {
+        return true;
+    } else {
+        return false;
     }
 }
 
@@ -38,4 +39,3 @@ fn complex_scope(x: int) -> float {
         }
     }
 }
-/*

@@ -8,25 +8,17 @@ KEYWORD_LET: 'let';
 KEYWORD_RETURN: 'return';
 KEYWORD_IF: 'if';
 KEYWORD_ELSE: 'else';
-KEYWORD_TRUE: 'true';
-KEYWORD_FALSE: 'false';
 KEYWORD_INT: 'int';
 KEYWORD_FLOAT: 'float';
 KEYWORD_CHAR: 'char';
 KEYWORD_BOOL: 'bool';
 KEYWORD_VOID: 'void';
 
-ID: [a-zA-Z_][a-zA-Z_0-9]*;
+BOOL_LITERAL: 'true' | 'false';
 INT_LITERAL: [0-9]+;
 FLOAT_LITERAL: [0-9]+ '.' [0-9]*;
 CHAR_LITERAL: '\'' . '\'';
-BOOL_LITERAL: KEYWORD_TRUE | KEYWORD_FALSE;
-
 STRING_LITERAL: '"' ( ~["\\] | '\\' . )* '"';
-
-COMMENT: '//' ~[\r\n]* -> skip;
-MULTILINE_COMMENT: '/*' .*? '*/' -> skip;
-WS: [ \t\r\n]+ -> skip;
 
 PLUS: '+';
 MINUS: '-';
@@ -55,6 +47,11 @@ RPAREN: ')';
 LBRACE: '{';
 RBRACE: '}';
 ARROW: '->';
+
+ID: [a-zA-Z_][a-zA-Z_0-9]*;
+COMMENT: '//' ~[\r\n]* -> skip;
+MULTILINE_COMMENT: '/*' .*? '*/' -> skip;
+WS: [ \t\r\n]+ -> skip;
 
 // Parser rules
 program: (statement | functionDecl | importStmt)*;
