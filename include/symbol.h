@@ -1,15 +1,8 @@
 #pragma once
 #include <string>
-// #include "type.h"
+#include "type.h"
 
-enum Type {
-    UNKNOWN,
-    INT,
-    CHAR,
-    FN,
-    FLOAT,
-    // ...
-};
+
 
 class Symbol {
 public:

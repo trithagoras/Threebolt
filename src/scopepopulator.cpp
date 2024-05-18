@@ -5,30 +5,7 @@
 #include <algorithm>
 #include <numeric>
 
-Type str_to_type(const std::string& type) {
-    if (type == "int") {
-        return Type::INT;
-    } else if (type == "float") {
-        return Type::FLOAT;
-    } else if (type == "char") {
-        return Type::CHAR;
-    }
-    return Type::UNKNOWN;
-}
-
-std::string type_to_str(Type type) {
-    switch (type) {
-        case Type::INT:
-            return "int";
-        case Type::CHAR:
-            return "char";
-        case Type::FLOAT:
-            return "float";
-        default:
-            return "unknown";
-    }
-}
-
+// TODO: ========== THIS IS DUPLICATED CODE IN TYPECHECKER.CPP =========
 std::string join_param_types(const std::vector<Symbol>& symbols) {
     std::vector<std::string> typeStrings;
     std::transform(symbols.begin(), symbols.end(), std::back_inserter(typeStrings), [](const Symbol& symbol) {
@@ -43,6 +20,7 @@ std::string join_param_types(const std::vector<Symbol>& symbols) {
     }
     return result;
 }
+// ========================================================================
 
 void ScopePopulator::push_scope(const std::string& name) {
     scopeStack.push(std::make_shared<Scope>(name, scopeStack.top().get()));
@@ -67,11 +45,9 @@ std::any ScopePopulator::visitFunctionDecl(threeboltParser::FunctionDeclContext 
 
     // create new scope and push it onto the stack
     push_scope(shortname);
-    std::cout << "New function scope created: " << shortname << std::endl;
 
     // enter fn
     const auto &in = scopeStack.top();
-    std::cout << "Entering scope: " << in->get_longname() << std::endl;
 
     // validate params are not already defined
     // TODO: this should probably be done in the visit to params, but this function scope is not defined yet :/
@@ -89,12 +65,6 @@ std::any ScopePopulator::visitFunctionDecl(threeboltParser::FunctionDeclContext 
 
     // pop current scope
     scopeStack.pop();
-    if (!scopeStack.empty()) {
-        std::cout << "Exiting current scope (end of function). Current scope is now: " << scopeStack.top()->get_longname() << std::endl;
-    } else {
-        std::cout << "Exiting current scope (end of function). No parent scope." << std::endl;
-    }
-
     return ctx;
 }
 

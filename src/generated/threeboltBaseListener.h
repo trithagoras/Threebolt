@@ -43,9 +43,6 @@ public:
   virtual void enterAssignment(threeboltParser::AssignmentContext * /*ctx*/) override { }
   virtual void exitAssignment(threeboltParser::AssignmentContext * /*ctx*/) override { }
 
-  virtual void enterAssignmentOperator(threeboltParser::AssignmentOperatorContext * /*ctx*/) override { }
-  virtual void exitAssignmentOperator(threeboltParser::AssignmentOperatorContext * /*ctx*/) override { }
-
   virtual void enterReturnStmt(threeboltParser::ReturnStmtContext * /*ctx*/) override { }
   virtual void exitReturnStmt(threeboltParser::ReturnStmtContext * /*ctx*/) override { }
 

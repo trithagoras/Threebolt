@@ -14,6 +14,7 @@ KEYWORD_INT: 'int';
 KEYWORD_FLOAT: 'float';
 KEYWORD_CHAR: 'char';
 KEYWORD_BOOL: 'bool';
+KEYWORD_VOID: 'void';
 
 ID: [a-zA-Z_][a-zA-Z_0-9]*;
 INT_LITERAL: [0-9]+;
@@ -75,15 +76,7 @@ statement: variableDecl
          ;
 
 variableDecl: KEYWORD_LET ID COLON type? ASSIGN expr SEMICOLON;
-assignment: ID assignmentOperator expr SEMICOLON;
-
-assignmentOperator
-    : ASSIGN
-    | PLUSEQ
-    | MINUSEQ
-    | STAREQ
-    | DIVEQ
-    ;
+assignment: ID (ASSIGN | PLUSEQ | MINUSEQ | STAREQ | DIVEQ | MODEQ) expr SEMICOLON;
 
 returnStmt: KEYWORD_RETURN expr? SEMICOLON;
 
@@ -120,6 +113,7 @@ type: KEYWORD_INT
     | KEYWORD_FLOAT
     | KEYWORD_CHAR
     | KEYWORD_BOOL
+    | KEYWORD_VOID
     ;
 
 DOUBLE_COLON: '::';

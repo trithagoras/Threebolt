@@ -1,4 +1,5 @@
-fn sum(x: int, y: int) -> int {
+fn sum(x: int, y: float) -> int {
+    4+5.5;
     let z := x + y;
     return z;
 }
@@ -9,7 +10,8 @@ fn main() {
     println(x + y);
 }
 
-fn complex_scope(x: int) {
+/*
+fn complex_scope(x: int) -> void {
     let y := x + 1;
     x += 1;
 
@@ -25,10 +27,11 @@ fn complex_scope(x: int) {
     }
 }
 
-fn sum(x: char, y: int) {
+fn sum(x: char, y: int) -> int {
     return x + y;
 }
 
-fn main2() {
+fn main2() -> void {
     return;
 }
+*/

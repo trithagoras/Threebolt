@@ -37,8 +37,6 @@ public:
 
     virtual std::any visitAssignment(threeboltParser::AssignmentContext *context) = 0;
 
-    virtual std::any visitAssignmentOperator(threeboltParser::AssignmentOperatorContext *context) = 0;
-
     virtual std::any visitReturnStmt(threeboltParser::ReturnStmtContext *context) = 0;
 
     virtual std::any visitIfStmt(threeboltParser::IfStmtContext *context) = 0;
