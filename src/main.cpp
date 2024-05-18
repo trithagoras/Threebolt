@@ -6,6 +6,7 @@
 #include "scope.h"
 #include "errorlogger.h"
 #include "typechecker.h"
+#include <set>
 
 int main(int argc, char **argv) {
     if (argc != 2) {
@@ -37,17 +38,6 @@ int main(int argc, char **argv) {
 
     std::cout << "Symbol table population complete." << std::endl;
 
-    // for (auto& [name, scope] : scopeTable.get_scopes()) {
-    //     std::cout << name << std::endl;
-    // }
-
-    // std::cout << "Printing all known symbols at scope global::complex_scope(int)::2::0" << std::endl;
-
-    // auto& scope = scopeTable.get_scopes().at("global::complex_scope(int)::2::0");
-    // for (auto& [name, symbol] : scope->get_all_symbols_in_scope()) {
-    //     std::cout << name << std::endl;
-    // }
-
     // print errors relating to symbols and scopes
     if (errorLogger.hasErrors()) {
         errorLogger.printErrors();
@@ -67,6 +57,8 @@ int main(int argc, char **argv) {
         errorLogger.printErrors();
         return 1;
     }
+
+    // code generation
 
     return 0;
 }

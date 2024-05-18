@@ -11,6 +11,9 @@ public:
     const std::map<std::string, std::shared_ptr<Scope>>& get_scopes() const {
         return scopes;
     }
+    std::shared_ptr<Scope> get_scope(const std::string& name) const {
+        return scopes.at(name);
+    }
 
 private:
     std::map<std::string, std::shared_ptr<Scope>> scopes;

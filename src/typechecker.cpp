@@ -355,7 +355,6 @@ std::any TypeChecker::visitElseStmt(threeboltParser::ElseStmtContext *ctx) {
 
 std::any TypeChecker::visitReturnStmt(threeboltParser::ReturnStmtContext *ctx) {
     auto retT = ctx->expr() ? std::any_cast<Type>(visit(ctx->expr())) : Type::VOID;
-    std::cout << type_to_str(retT) << std::endl;
 
     if (coerce(retT, currentFunction->type) != currentFunction->type) {
         errorLogger.logError(std::format("Cannot coerce function declaration expected type {} with actual type {}", type_to_str(currentFunction->type), type_to_str(retT)), ctx->getStart()->getLine(), ctx->getStart()->getCharPositionInLine());
