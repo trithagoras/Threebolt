@@ -32,9 +32,7 @@ std::any ScopePopulator::visitFunctionDecl(threeboltParser::FunctionDeclContext 
     auto paramTypeNames = join_param_types(paramSymbols);
     
     auto shortname = ctx->ID()->getText();
-    if (!paramSymbols.empty()) {
-        shortname = std::format("{}({})", shortname, paramTypeNames);
-    }
+    shortname = std::format("{}({})", shortname, paramTypeNames);
 
     // check if symbol already defined in this scope (or any parent scope)
     if (scopeStack.top()->find_symbol(shortname)) {

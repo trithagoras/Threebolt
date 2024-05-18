@@ -1,37 +1,41 @@
-fn sum(x: int, y: float) -> int {
+fn sum(x: int, y: float) -> float {
     4+5.5;
     let z := x + y;
     return z;
 }
 
-fn main() {
+fn main() -> void {
     let x := 5;
     let y := 6;
     println(x + y);
+    return;
 }
 
-/*
-fn complex_scope(x: int) -> void {
+fn slightly_complex(x: int) -> float {
+    let y := x + 5.0;
+
+    if y >= 5.0 {
+        return y > 5.5;
+    }
+}
+
+*/
+fn complex_scope(x: int) -> float {
     let y := x + 1;
     x += 1;
 
     if x < 5 {
         let z := y - x;
+        return z;
     } else if (x < 6) {
         let z := y + x;
         let p := 'c';
+        return 5.315123;
     } else {
         if y > 10 {
             let z := x - y;
+            return 'd';
         }
     }
 }
-
-fn sum(x: char, y: int) -> int {
-    return x + y;
-}
-
-fn main2() -> void {
-    return;
-}
-*/
+/*

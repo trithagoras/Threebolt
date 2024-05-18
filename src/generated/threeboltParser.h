@@ -118,9 +118,9 @@ public:
     antlr4::tree::TerminalNode *LPAREN();
     antlr4::tree::TerminalNode *RPAREN();
     BlockContext *block();
-    ParametersContext *parameters();
     antlr4::tree::TerminalNode *ARROW();
     TypeContext *type();
+    ParametersContext *parameters();
 
     virtual void enterRule(antlr4::tree::ParseTreeListener *listener) override;
     virtual void exitRule(antlr4::tree::ParseTreeListener *listener) override;

@@ -15,6 +15,7 @@ private:
 public:
     ScopePopulator(ErrorLogger& errorLogger, ScopeTable& scopeTable) : errorLogger(errorLogger), scopeTable(scopeTable) {
         scopeStack.push(std::make_shared<Scope>("global"));
+        scopeTable.add_scope(scopeStack.top());
     }
 
     void push_scope(const std::string& name);

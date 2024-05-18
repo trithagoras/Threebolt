@@ -61,7 +61,7 @@ program: (statement | functionDecl | importStmt)*;
 
 importStmt: KEYWORD_FROM ID DOUBLE_COLON ID KEYWORD_IMPORT STAR SEMICOLON;
 
-functionDecl: KEYWORD_FN ID LPAREN parameters? RPAREN (ARROW type)? block;
+functionDecl: KEYWORD_FN ID LPAREN parameters? RPAREN (ARROW type) block;
 
 parameters: parameter (COMMA parameter)*;
 parameter: ID COLON type;
