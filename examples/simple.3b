@@ -1,3 +1,5 @@
+
+
 fn sum(x: int, y: float) -> float {
     4+5.5;
     let z := x + y;
@@ -30,7 +32,8 @@ fn complex_scope(x: int) -> float {
     } else if (x < 6) {
         let z := y + x;
         let p := 'c';
-        return 5.315123;
+        p = 5;
+        return 5.315123 + p;
     } else {
         if y > 10 {
             let z := x - y;

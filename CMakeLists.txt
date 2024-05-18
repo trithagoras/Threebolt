@@ -18,7 +18,7 @@ find_package(antlr4-runtime CONFIG REQUIRED)
 # exe
 add_executable(threebolt 
     src/generated/threeboltBaseVisitor.cpp src/generated/threeboltLexer.cpp src/generated/threeboltParser.cpp src/generated/threeboltVisitor.cpp
-    src/main.cpp src/scopepopulator.cpp src/scope.cpp src/errorlogger.cpp src/typechecker.cpp src/type.cpp src/codegenerator.cpp
+    src/main.cpp src/scopepopulator.cpp src/scope.cpp src/errorlogger.cpp src/typechecker.cpp src/type.cpp src/codegenerator.cpp src/interpreter.cpp
 )
 
 # Include directories for ANTLR4 runtime

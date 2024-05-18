@@ -6,7 +6,7 @@
 #include "scope.h"
 #include "errorlogger.h"
 #include "typechecker.h"
-#include <set>
+#include "interpreter.h"
 
 int main(int argc, char **argv) {
     if (argc != 2) {
@@ -30,12 +30,10 @@ int main(int argc, char **argv) {
     ErrorLogger errorLogger;
     ScopeTable scopeTable;
 
-    std::cout << "Starting symbol table population." << std::endl;
-
     // initial walk (populating scopes and symbol tables)
+    std::cout << "Starting symbol table population." << std::endl;
     auto scopePopulator = ScopePopulator(errorLogger, scopeTable);
     scopePopulator.visit(tree);
-
     std::cout << "Symbol table population complete." << std::endl;
 
     // print errors relating to symbols and scopes
@@ -44,12 +42,10 @@ int main(int argc, char **argv) {
         return 1;
     }
 
-    std::cout << "Starting type checking." << std::endl;
-
     // second walk (type checking)
+    std::cout << "Starting type checking." << std::endl;
     auto typeChecker = TypeChecker(errorLogger, scopeTable);
     typeChecker.visit(tree);
-
     std::cout << "Type checking complete." << std::endl;
 
     // print errors relating to type checking
@@ -58,7 +54,11 @@ int main(int argc, char **argv) {
         return 1;
     }
 
-    // code generation
+    // code generation / interpretation
+    std::cout << "Starting interpretation." << std::endl;
+    auto interpreter = Interpreter(errorLogger, scopeTable);
+    interpreter.visit(tree);
+    std::cout << "Interpretation complete." << std::endl;
 
     return 0;
 }
