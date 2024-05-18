@@ -40,4 +40,6 @@ public:
     std::any visitType(threeboltParser::TypeContext *ctx) override;
 
     std::any visitIfStmt(threeboltParser::IfStmtContext *ctx) override;
+
+    std::any visitVariableDecl(threeboltParser::VariableDeclContext *ctx) override;
 };

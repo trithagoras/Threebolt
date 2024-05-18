@@ -148,3 +148,13 @@ std::any ScopePopulator::visitIfStmt(threeboltParser::IfStmtContext *ctx) {
 
     return ctx;
 }
+
+std::any ScopePopulator::visitVariableDecl(threeboltParser::VariableDeclContext *ctx) {
+    auto& top = scopeStack.top();
+    auto id = ctx->ID();
+    if (top->find_symbol(id->getText())) {
+        errorLogger.logError(std::format("Symbol {} already defined in this or previous scope.", id->getText()), ctx->getStart()->getLine(), ctx->getStart()->getCharPositionInLine());
+    }
+    scopeStack.top()->add_symbol(std::make_shared<Symbol>(ctx->ID()->getText(), Type::UNKNOWN));
+    return ctx;
+}

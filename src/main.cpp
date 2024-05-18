@@ -38,6 +38,13 @@ int main(int argc, char **argv) {
         std::cout << name << std::endl;
     }
 
+    std::cout << "Printing all known symbols at scope global::complex_scope(int)::2::0" << std::endl;
+
+    auto& scope = scopeTable.get_scopes().at("global::complex_scope(int)::2::0");
+    for (auto& [name, symbol] : scope->get_all_symbols_in_scope()) {
+        std::cout << name << std::endl;
+    }
+
     // print errors relating to symbols and scopes
     if (errorLogger.hasErrors()) {
         errorLogger.printErrors();

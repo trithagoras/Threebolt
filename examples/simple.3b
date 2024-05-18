@@ -32,28 +32,3 @@ fn sum(x: char, y: int) {
 fn main2() {
     return;
 }
-
-/*
-scope and symbol table id construction:
-
-global
-    global_simple
-        global_simple_sum
-            global_simple_sum_x
-            global_simple_sum_y
-            global_simple_sum_z
-
-        global_simple_main
-            global_simple_main_x
-            global_simple_main_y
-
-        global_simple_complex_scope
-            global_simple_complex_scope_x
-            global_simple_complex_scope_y
-            global_simple_complex_scope_1   // uses scopeCount
-                global_simple_complex_scope_1_z
-            global_simple_complex_scope_2
-                global_simple_complex_scope_2_1
-                    global_simple_complex_scope_2_1_z
-
-*/

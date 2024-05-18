@@ -33,7 +33,14 @@ public:
     const std::string& get_longname() {
         return this->longname;
     }
+
+    /// @brief 
+    /// @return nullptr if this is the global scope. 
     Scope* get_parent() const {
         return parent;
     }
+
+    /// @brief Gets all symbols in this scope and all ancestors' known symbols
+    /// @return 
+    std::map<std::string, std::shared_ptr<Symbol>> get_all_symbols_in_scope() const;
 };
