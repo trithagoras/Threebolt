@@ -15,19 +15,9 @@ struct Error {
 // TODO: have warning system
 class ErrorLogger {
 public:
-    void logError(const std::string& message, int line, int column) {
-        errors.emplace_back(message, line, column);
-    }
-
-    void printErrors() const {
-        for (const auto& error : errors) {
-            std::cerr << "Error at line " << error.line << ", column " << error.column << ": " << error.message << std::endl;
-        }
-    }
-
-    bool hasErrors() const {
-        return !errors.empty();
-    }
+    void logError(const std::string& message, int line, int column);
+    void printErrors() const;
+    bool hasErrors() const;
 
 private:
     std::vector<Error> errors;
