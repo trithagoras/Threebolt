@@ -41,11 +41,20 @@ public:
   virtual void enterAssignment(threeboltParser::AssignmentContext *ctx) = 0;
   virtual void exitAssignment(threeboltParser::AssignmentContext *ctx) = 0;
 
+  virtual void enterAssignmentOperator(threeboltParser::AssignmentOperatorContext *ctx) = 0;
+  virtual void exitAssignmentOperator(threeboltParser::AssignmentOperatorContext *ctx) = 0;
+
   virtual void enterReturnStmt(threeboltParser::ReturnStmtContext *ctx) = 0;
   virtual void exitReturnStmt(threeboltParser::ReturnStmtContext *ctx) = 0;
 
   virtual void enterIfStmt(threeboltParser::IfStmtContext *ctx) = 0;
   virtual void exitIfStmt(threeboltParser::IfStmtContext *ctx) = 0;
+
+  virtual void enterElseIfStmt(threeboltParser::ElseIfStmtContext *ctx) = 0;
+  virtual void exitElseIfStmt(threeboltParser::ElseIfStmtContext *ctx) = 0;
+
+  virtual void enterElseStmt(threeboltParser::ElseStmtContext *ctx) = 0;
+  virtual void exitElseStmt(threeboltParser::ElseStmtContext *ctx) = 0;
 
   virtual void enterExprStmt(threeboltParser::ExprStmtContext *ctx) = 0;
   virtual void exitExprStmt(threeboltParser::ExprStmtContext *ctx) = 0;

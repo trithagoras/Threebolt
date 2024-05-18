@@ -43,11 +43,20 @@ public:
   virtual void enterAssignment(threeboltParser::AssignmentContext * /*ctx*/) override { }
   virtual void exitAssignment(threeboltParser::AssignmentContext * /*ctx*/) override { }
 
+  virtual void enterAssignmentOperator(threeboltParser::AssignmentOperatorContext * /*ctx*/) override { }
+  virtual void exitAssignmentOperator(threeboltParser::AssignmentOperatorContext * /*ctx*/) override { }
+
   virtual void enterReturnStmt(threeboltParser::ReturnStmtContext * /*ctx*/) override { }
   virtual void exitReturnStmt(threeboltParser::ReturnStmtContext * /*ctx*/) override { }
 
   virtual void enterIfStmt(threeboltParser::IfStmtContext * /*ctx*/) override { }
   virtual void exitIfStmt(threeboltParser::IfStmtContext * /*ctx*/) override { }
+
+  virtual void enterElseIfStmt(threeboltParser::ElseIfStmtContext * /*ctx*/) override { }
+  virtual void exitElseIfStmt(threeboltParser::ElseIfStmtContext * /*ctx*/) override { }
+
+  virtual void enterElseStmt(threeboltParser::ElseStmtContext * /*ctx*/) override { }
+  virtual void exitElseStmt(threeboltParser::ElseStmtContext * /*ctx*/) override { }
 
   virtual void enterExprStmt(threeboltParser::ExprStmtContext * /*ctx*/) override { }
   virtual void exitExprStmt(threeboltParser::ExprStmtContext * /*ctx*/) override { }

@@ -13,21 +13,23 @@ class  threeboltParser : public antlr4::Parser {
 public:
   enum {
     KEYWORD_FROM = 1, KEYWORD_IMPORT = 2, KEYWORD_FN = 3, KEYWORD_LET = 4, 
-    KEYWORD_RETURN = 5, KEYWORD_IF = 6, KEYWORD_TRUE = 7, KEYWORD_FALSE = 8, 
-    KEYWORD_INT = 9, KEYWORD_FLOAT = 10, KEYWORD_CHAR = 11, KEYWORD_BOOL = 12, 
-    ID = 13, INT_LITERAL = 14, FLOAT_LITERAL = 15, CHAR_LITERAL = 16, BOOL_LITERAL = 17, 
-    STRING_LITERAL = 18, COMMENT = 19, MULTILINE_COMMENT = 20, WS = 21, 
-    PLUS = 22, MINUS = 23, STAR = 24, DIV = 25, MOD = 26, EQ = 27, NEQ = 28, 
-    LT = 29, LEQ = 30, GT = 31, GEQ = 32, ASSIGN = 33, COLON = 34, SEMICOLON = 35, 
-    COMMA = 36, LPAREN = 37, RPAREN = 38, LBRACE = 39, RBRACE = 40, ARROW = 41, 
-    DOUBLE_COLON = 42
+    KEYWORD_RETURN = 5, KEYWORD_IF = 6, KEYWORD_ELSE = 7, KEYWORD_TRUE = 8, 
+    KEYWORD_FALSE = 9, KEYWORD_INT = 10, KEYWORD_FLOAT = 11, KEYWORD_CHAR = 12, 
+    KEYWORD_BOOL = 13, ID = 14, INT_LITERAL = 15, FLOAT_LITERAL = 16, CHAR_LITERAL = 17, 
+    BOOL_LITERAL = 18, STRING_LITERAL = 19, COMMENT = 20, MULTILINE_COMMENT = 21, 
+    WS = 22, PLUS = 23, MINUS = 24, STAR = 25, DIV = 26, MOD = 27, PLUSEQ = 28, 
+    MINUSEQ = 29, STAREQ = 30, DIVEQ = 31, MODEQ = 32, EQ = 33, NEQ = 34, 
+    LT = 35, LEQ = 36, GT = 37, GEQ = 38, ASSIGN = 39, COLON = 40, SEMICOLON = 41, 
+    COMMA = 42, LPAREN = 43, RPAREN = 44, LBRACE = 45, RBRACE = 46, ARROW = 47, 
+    DOUBLE_COLON = 48
   };
 
   enum {
     RuleProgram = 0, RuleImportStmt = 1, RuleFunctionDecl = 2, RuleParameters = 3, 
     RuleParameter = 4, RuleBlock = 5, RuleStatement = 6, RuleVariableDecl = 7, 
-    RuleAssignment = 8, RuleReturnStmt = 9, RuleIfStmt = 10, RuleExprStmt = 11, 
-    RuleExpr = 12, RuleFunctionCall = 13, RuleArguments = 14, RuleType = 15
+    RuleAssignment = 8, RuleAssignmentOperator = 9, RuleReturnStmt = 10, 
+    RuleIfStmt = 11, RuleElseIfStmt = 12, RuleElseStmt = 13, RuleExprStmt = 14, 
+    RuleExpr = 15, RuleFunctionCall = 16, RuleArguments = 17, RuleType = 18
   };
 
   explicit threeboltParser(antlr4::TokenStream *input);
@@ -56,8 +58,11 @@ public:
   class StatementContext;
   class VariableDeclContext;
   class AssignmentContext;
+  class AssignmentOperatorContext;
   class ReturnStmtContext;
   class IfStmtContext;
+  class ElseIfStmtContext;
+  class ElseStmtContext;
   class ExprStmtContext;
   class ExprContext;
   class FunctionCallContext;
@@ -225,7 +230,7 @@ public:
     AssignmentContext(antlr4::ParserRuleContext *parent, size_t invokingState);
     virtual size_t getRuleIndex() const override;
     antlr4::tree::TerminalNode *ID();
-    antlr4::tree::TerminalNode *ASSIGN();
+    AssignmentOperatorContext *assignmentOperator();
     ExprContext *expr();
     antlr4::tree::TerminalNode *SEMICOLON();
 
@@ -237,6 +242,25 @@ public:
   };
 
   AssignmentContext* assignment();
+
+  class  AssignmentOperatorContext : public antlr4::ParserRuleContext {
+  public:
+    AssignmentOperatorContext(antlr4::ParserRuleContext *parent, size_t invokingState);
+    virtual size_t getRuleIndex() const override;
+    antlr4::tree::TerminalNode *ASSIGN();
+    antlr4::tree::TerminalNode *PLUSEQ();
+    antlr4::tree::TerminalNode *MINUSEQ();
+    antlr4::tree::TerminalNode *STAREQ();
+    antlr4::tree::TerminalNode *DIVEQ();
+
+    virtual void enterRule(antlr4::tree::ParseTreeListener *listener) override;
+    virtual void exitRule(antlr4::tree::ParseTreeListener *listener) override;
+
+    virtual std::any accept(antlr4::tree::ParseTreeVisitor *visitor) override;
+   
+  };
+
+  AssignmentOperatorContext* assignmentOperator();
 
   class  ReturnStmtContext : public antlr4::ParserRuleContext {
   public:
@@ -262,6 +286,9 @@ public:
     antlr4::tree::TerminalNode *KEYWORD_IF();
     ExprContext *expr();
     BlockContext *block();
+    std::vector<ElseIfStmtContext *> elseIfStmt();
+    ElseIfStmtContext* elseIfStmt(size_t i);
+    ElseStmtContext *elseStmt();
 
     virtual void enterRule(antlr4::tree::ParseTreeListener *listener) override;
     virtual void exitRule(antlr4::tree::ParseTreeListener *listener) override;
@@ -271,6 +298,40 @@ public:
   };
 
   IfStmtContext* ifStmt();
+
+  class  ElseIfStmtContext : public antlr4::ParserRuleContext {
+  public:
+    ElseIfStmtContext(antlr4::ParserRuleContext *parent, size_t invokingState);
+    virtual size_t getRuleIndex() const override;
+    antlr4::tree::TerminalNode *KEYWORD_ELSE();
+    antlr4::tree::TerminalNode *KEYWORD_IF();
+    ExprContext *expr();
+    BlockContext *block();
+
+    virtual void enterRule(antlr4::tree::ParseTreeListener *listener) override;
+    virtual void exitRule(antlr4::tree::ParseTreeListener *listener) override;
+
+    virtual std::any accept(antlr4::tree::ParseTreeVisitor *visitor) override;
+   
+  };
+
+  ElseIfStmtContext* elseIfStmt();
+
+  class  ElseStmtContext : public antlr4::ParserRuleContext {
+  public:
+    ElseStmtContext(antlr4::ParserRuleContext *parent, size_t invokingState);
+    virtual size_t getRuleIndex() const override;
+    antlr4::tree::TerminalNode *KEYWORD_ELSE();
+    BlockContext *block();
+
+    virtual void enterRule(antlr4::tree::ParseTreeListener *listener) override;
+    virtual void exitRule(antlr4::tree::ParseTreeListener *listener) override;
+
+    virtual std::any accept(antlr4::tree::ParseTreeVisitor *visitor) override;
+   
+  };
+
+  ElseStmtContext* elseStmt();
 
   class  ExprStmtContext : public antlr4::ParserRuleContext {
   public:

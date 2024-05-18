@@ -51,11 +51,23 @@ public:
     return visitChildren(ctx);
   }
 
+  virtual std::any visitAssignmentOperator(threeboltParser::AssignmentOperatorContext *ctx) override {
+    return visitChildren(ctx);
+  }
+
   virtual std::any visitReturnStmt(threeboltParser::ReturnStmtContext *ctx) override {
     return visitChildren(ctx);
   }
 
   virtual std::any visitIfStmt(threeboltParser::IfStmtContext *ctx) override {
+    return visitChildren(ctx);
+  }
+
+  virtual std::any visitElseIfStmt(threeboltParser::ElseIfStmtContext *ctx) override {
+    return visitChildren(ctx);
+  }
+
+  virtual std::any visitElseStmt(threeboltParser::ElseStmtContext *ctx) override {
     return visitChildren(ctx);
   }
 

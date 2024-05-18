@@ -2,11 +2,17 @@
 #include <antlr4-runtime.h>
 #include "threeboltLexer.h"
 #include "threeboltParser.h"
-#include "examplevisitor.h"
+#include "scopepopulator.h"
+#include "scope.h"
 
-int main() {
-    // TODO: obviously change this
-    std::ifstream t("/home/corey/code/cpp/threebolt/examples/simple.3b");
+int main(int argc, char **argv) {
+    if (argc != 2) {
+        std::cout << "Usage: threebolt <input-file.3b>" << std::endl;
+        return 1;
+    }
+    auto filePath = argv[1];
+
+    std::ifstream t(filePath);
     std::stringstream buffer;
     buffer << t.rdbuf();
     auto program = buffer.str();
@@ -18,11 +24,8 @@ int main() {
     auto parser = threeboltParser(&tokens);
     auto tree = parser.program();
 
-    // initial walk (populating scopes)
-
-
-    // subsequent walk
-    auto visitor = ExampleVisitor();
+    // initial walk (populating scopes and symbol tables)
+    auto visitor = ScopePopulator();
     visitor.visit(tree);
     return 0;
 }

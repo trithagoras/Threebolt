@@ -54,76 +54,87 @@ void threeboltParserInitialize() {
   auto staticData = std::make_unique<ThreeboltParserStaticData>(
     std::vector<std::string>{
       "program", "importStmt", "functionDecl", "parameters", "parameter", 
-      "block", "statement", "variableDecl", "assignment", "returnStmt", 
-      "ifStmt", "exprStmt", "expr", "functionCall", "arguments", "type"
+      "block", "statement", "variableDecl", "assignment", "assignmentOperator", 
+      "returnStmt", "ifStmt", "elseIfStmt", "elseStmt", "exprStmt", "expr", 
+      "functionCall", "arguments", "type"
     },
     std::vector<std::string>{
-      "", "'from'", "'import'", "'fn'", "'let'", "'return'", "'if'", "'true'", 
-      "'false'", "'int'", "'float'", "'char'", "'bool'", "", "", "", "", 
-      "", "", "", "", "", "'+'", "'-'", "'*'", "'/'", "'%'", "'=='", "'!='", 
-      "'<'", "'<='", "'>'", "'>='", "'='", "':'", "';'", "','", "'('", "')'", 
-      "'{'", "'}'", "'->'", "'::'"
+      "", "'from'", "'import'", "'fn'", "'let'", "'return'", "'if'", "'else'", 
+      "'true'", "'false'", "'int'", "'float'", "'char'", "'bool'", "", "", 
+      "", "", "", "", "", "", "", "'+'", "'-'", "'*'", "'/'", "'%'", "'+='", 
+      "'-='", "'*='", "'/='", "'%='", "'=='", "'!='", "'<'", "'<='", "'>'", 
+      "'>='", "'='", "':'", "';'", "','", "'('", "')'", "'{'", "'}'", "'->'", 
+      "'::'"
     },
     std::vector<std::string>{
       "", "KEYWORD_FROM", "KEYWORD_IMPORT", "KEYWORD_FN", "KEYWORD_LET", 
-      "KEYWORD_RETURN", "KEYWORD_IF", "KEYWORD_TRUE", "KEYWORD_FALSE", "KEYWORD_INT", 
-      "KEYWORD_FLOAT", "KEYWORD_CHAR", "KEYWORD_BOOL", "ID", "INT_LITERAL", 
-      "FLOAT_LITERAL", "CHAR_LITERAL", "BOOL_LITERAL", "STRING_LITERAL", 
+      "KEYWORD_RETURN", "KEYWORD_IF", "KEYWORD_ELSE", "KEYWORD_TRUE", "KEYWORD_FALSE", 
+      "KEYWORD_INT", "KEYWORD_FLOAT", "KEYWORD_CHAR", "KEYWORD_BOOL", "ID", 
+      "INT_LITERAL", "FLOAT_LITERAL", "CHAR_LITERAL", "BOOL_LITERAL", "STRING_LITERAL", 
       "COMMENT", "MULTILINE_COMMENT", "WS", "PLUS", "MINUS", "STAR", "DIV", 
-      "MOD", "EQ", "NEQ", "LT", "LEQ", "GT", "GEQ", "ASSIGN", "COLON", "SEMICOLON", 
-      "COMMA", "LPAREN", "RPAREN", "LBRACE", "RBRACE", "ARROW", "DOUBLE_COLON"
+      "MOD", "PLUSEQ", "MINUSEQ", "STAREQ", "DIVEQ", "MODEQ", "EQ", "NEQ", 
+      "LT", "LEQ", "GT", "GEQ", "ASSIGN", "COLON", "SEMICOLON", "COMMA", 
+      "LPAREN", "RPAREN", "LBRACE", "RBRACE", "ARROW", "DOUBLE_COLON"
     }
   );
   static const int32_t serializedATNSegment[] = {
-  	4,1,42,158,2,0,7,0,2,1,7,1,2,2,7,2,2,3,7,3,2,4,7,4,2,5,7,5,2,6,7,6,2,
+  	4,1,48,182,2,0,7,0,2,1,7,1,2,2,7,2,2,3,7,3,2,4,7,4,2,5,7,5,2,6,7,6,2,
   	7,7,7,2,8,7,8,2,9,7,9,2,10,7,10,2,11,7,11,2,12,7,12,2,13,7,13,2,14,7,
-  	14,2,15,7,15,1,0,1,0,1,0,5,0,36,8,0,10,0,12,0,39,9,0,1,1,1,1,1,1,1,1,
-  	1,1,1,1,1,1,1,1,1,2,1,2,1,2,1,2,3,2,53,8,2,1,2,1,2,1,2,3,2,58,8,2,1,2,
-  	1,2,1,3,1,3,1,3,5,3,65,8,3,10,3,12,3,68,9,3,1,4,1,4,1,4,1,4,1,5,1,5,5,
-  	5,76,8,5,10,5,12,5,79,9,5,1,5,1,5,1,6,1,6,1,6,1,6,1,6,3,6,88,8,6,1,7,
-  	1,7,1,7,1,7,3,7,94,8,7,1,7,1,7,1,7,1,7,1,8,1,8,1,8,1,8,1,8,1,9,1,9,1,
-  	9,1,9,1,10,1,10,1,10,1,10,1,11,1,11,1,11,1,12,1,12,1,12,1,12,1,12,1,12,
-  	1,12,1,12,1,12,1,12,1,12,1,12,3,12,128,8,12,1,12,1,12,1,12,1,12,1,12,
-  	1,12,5,12,136,8,12,10,12,12,12,139,9,12,1,13,1,13,1,13,3,13,144,8,13,
-  	1,13,1,13,1,14,1,14,1,14,5,14,151,8,14,10,14,12,14,154,9,14,1,15,1,15,
-  	1,15,0,1,24,16,0,2,4,6,8,10,12,14,16,18,20,22,24,26,28,30,0,3,1,0,22,
-  	26,1,0,27,32,1,0,9,12,164,0,37,1,0,0,0,2,40,1,0,0,0,4,48,1,0,0,0,6,61,
-  	1,0,0,0,8,69,1,0,0,0,10,73,1,0,0,0,12,87,1,0,0,0,14,89,1,0,0,0,16,99,
-  	1,0,0,0,18,104,1,0,0,0,20,108,1,0,0,0,22,112,1,0,0,0,24,127,1,0,0,0,26,
-  	140,1,0,0,0,28,147,1,0,0,0,30,155,1,0,0,0,32,36,3,12,6,0,33,36,3,4,2,
-  	0,34,36,3,2,1,0,35,32,1,0,0,0,35,33,1,0,0,0,35,34,1,0,0,0,36,39,1,0,0,
-  	0,37,35,1,0,0,0,37,38,1,0,0,0,38,1,1,0,0,0,39,37,1,0,0,0,40,41,5,1,0,
-  	0,41,42,5,13,0,0,42,43,5,42,0,0,43,44,5,13,0,0,44,45,5,2,0,0,45,46,5,
-  	24,0,0,46,47,5,35,0,0,47,3,1,0,0,0,48,49,5,3,0,0,49,50,5,13,0,0,50,52,
-  	5,37,0,0,51,53,3,6,3,0,52,51,1,0,0,0,52,53,1,0,0,0,53,54,1,0,0,0,54,57,
-  	5,38,0,0,55,56,5,41,0,0,56,58,3,30,15,0,57,55,1,0,0,0,57,58,1,0,0,0,58,
-  	59,1,0,0,0,59,60,3,10,5,0,60,5,1,0,0,0,61,66,3,8,4,0,62,63,5,36,0,0,63,
-  	65,3,8,4,0,64,62,1,0,0,0,65,68,1,0,0,0,66,64,1,0,0,0,66,67,1,0,0,0,67,
-  	7,1,0,0,0,68,66,1,0,0,0,69,70,5,13,0,0,70,71,5,34,0,0,71,72,3,30,15,0,
-  	72,9,1,0,0,0,73,77,5,39,0,0,74,76,3,12,6,0,75,74,1,0,0,0,76,79,1,0,0,
-  	0,77,75,1,0,0,0,77,78,1,0,0,0,78,80,1,0,0,0,79,77,1,0,0,0,80,81,5,40,
-  	0,0,81,11,1,0,0,0,82,88,3,14,7,0,83,88,3,16,8,0,84,88,3,18,9,0,85,88,
-  	3,20,10,0,86,88,3,22,11,0,87,82,1,0,0,0,87,83,1,0,0,0,87,84,1,0,0,0,87,
-  	85,1,0,0,0,87,86,1,0,0,0,88,13,1,0,0,0,89,90,5,4,0,0,90,91,5,13,0,0,91,
-  	93,5,34,0,0,92,94,3,30,15,0,93,92,1,0,0,0,93,94,1,0,0,0,94,95,1,0,0,0,
-  	95,96,5,33,0,0,96,97,3,24,12,0,97,98,5,35,0,0,98,15,1,0,0,0,99,100,5,
-  	13,0,0,100,101,5,33,0,0,101,102,3,24,12,0,102,103,5,35,0,0,103,17,1,0,
-  	0,0,104,105,5,5,0,0,105,106,3,24,12,0,106,107,5,35,0,0,107,19,1,0,0,0,
-  	108,109,5,6,0,0,109,110,3,24,12,0,110,111,3,10,5,0,111,21,1,0,0,0,112,
-  	113,3,24,12,0,113,114,5,35,0,0,114,23,1,0,0,0,115,116,6,12,-1,0,116,128,
-  	5,13,0,0,117,128,5,14,0,0,118,128,5,15,0,0,119,128,5,16,0,0,120,128,5,
-  	17,0,0,121,128,5,18,0,0,122,128,3,26,13,0,123,124,5,37,0,0,124,125,3,
-  	24,12,0,125,126,5,38,0,0,126,128,1,0,0,0,127,115,1,0,0,0,127,117,1,0,
-  	0,0,127,118,1,0,0,0,127,119,1,0,0,0,127,120,1,0,0,0,127,121,1,0,0,0,127,
-  	122,1,0,0,0,127,123,1,0,0,0,128,137,1,0,0,0,129,130,10,10,0,0,130,131,
-  	7,0,0,0,131,136,3,24,12,11,132,133,10,9,0,0,133,134,7,1,0,0,134,136,3,
-  	24,12,10,135,129,1,0,0,0,135,132,1,0,0,0,136,139,1,0,0,0,137,135,1,0,
-  	0,0,137,138,1,0,0,0,138,25,1,0,0,0,139,137,1,0,0,0,140,141,5,13,0,0,141,
-  	143,5,37,0,0,142,144,3,28,14,0,143,142,1,0,0,0,143,144,1,0,0,0,144,145,
-  	1,0,0,0,145,146,5,38,0,0,146,27,1,0,0,0,147,152,3,24,12,0,148,149,5,36,
-  	0,0,149,151,3,24,12,0,150,148,1,0,0,0,151,154,1,0,0,0,152,150,1,0,0,0,
-  	152,153,1,0,0,0,153,29,1,0,0,0,154,152,1,0,0,0,155,156,7,2,0,0,156,31,
-  	1,0,0,0,13,35,37,52,57,66,77,87,93,127,135,137,143,152
+  	14,2,15,7,15,2,16,7,16,2,17,7,17,2,18,7,18,1,0,1,0,1,0,5,0,42,8,0,10,
+  	0,12,0,45,9,0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,2,1,2,1,2,1,2,3,2,59,
+  	8,2,1,2,1,2,1,2,3,2,64,8,2,1,2,1,2,1,3,1,3,1,3,5,3,71,8,3,10,3,12,3,74,
+  	9,3,1,4,1,4,1,4,1,4,1,5,1,5,5,5,82,8,5,10,5,12,5,85,9,5,1,5,1,5,1,6,1,
+  	6,1,6,1,6,1,6,3,6,94,8,6,1,7,1,7,1,7,1,7,3,7,100,8,7,1,7,1,7,1,7,1,7,
+  	1,8,1,8,1,8,1,8,1,8,1,9,1,9,1,10,1,10,1,10,1,10,1,11,1,11,1,11,1,11,5,
+  	11,121,8,11,10,11,12,11,124,9,11,1,11,3,11,127,8,11,1,12,1,12,1,12,1,
+  	12,1,12,1,13,1,13,1,13,1,14,1,14,1,14,1,15,1,15,1,15,1,15,1,15,1,15,1,
+  	15,1,15,1,15,1,15,1,15,1,15,3,15,152,8,15,1,15,1,15,1,15,1,15,1,15,1,
+  	15,5,15,160,8,15,10,15,12,15,163,9,15,1,16,1,16,1,16,3,16,168,8,16,1,
+  	16,1,16,1,17,1,17,1,17,5,17,175,8,17,10,17,12,17,178,9,17,1,18,1,18,1,
+  	18,0,1,30,19,0,2,4,6,8,10,12,14,16,18,20,22,24,26,28,30,32,34,36,0,4,
+  	2,0,28,31,39,39,1,0,23,27,1,0,33,38,1,0,10,13,187,0,43,1,0,0,0,2,46,1,
+  	0,0,0,4,54,1,0,0,0,6,67,1,0,0,0,8,75,1,0,0,0,10,79,1,0,0,0,12,93,1,0,
+  	0,0,14,95,1,0,0,0,16,105,1,0,0,0,18,110,1,0,0,0,20,112,1,0,0,0,22,116,
+  	1,0,0,0,24,128,1,0,0,0,26,133,1,0,0,0,28,136,1,0,0,0,30,151,1,0,0,0,32,
+  	164,1,0,0,0,34,171,1,0,0,0,36,179,1,0,0,0,38,42,3,12,6,0,39,42,3,4,2,
+  	0,40,42,3,2,1,0,41,38,1,0,0,0,41,39,1,0,0,0,41,40,1,0,0,0,42,45,1,0,0,
+  	0,43,41,1,0,0,0,43,44,1,0,0,0,44,1,1,0,0,0,45,43,1,0,0,0,46,47,5,1,0,
+  	0,47,48,5,14,0,0,48,49,5,48,0,0,49,50,5,14,0,0,50,51,5,2,0,0,51,52,5,
+  	25,0,0,52,53,5,41,0,0,53,3,1,0,0,0,54,55,5,3,0,0,55,56,5,14,0,0,56,58,
+  	5,43,0,0,57,59,3,6,3,0,58,57,1,0,0,0,58,59,1,0,0,0,59,60,1,0,0,0,60,63,
+  	5,44,0,0,61,62,5,47,0,0,62,64,3,36,18,0,63,61,1,0,0,0,63,64,1,0,0,0,64,
+  	65,1,0,0,0,65,66,3,10,5,0,66,5,1,0,0,0,67,72,3,8,4,0,68,69,5,42,0,0,69,
+  	71,3,8,4,0,70,68,1,0,0,0,71,74,1,0,0,0,72,70,1,0,0,0,72,73,1,0,0,0,73,
+  	7,1,0,0,0,74,72,1,0,0,0,75,76,5,14,0,0,76,77,5,40,0,0,77,78,3,36,18,0,
+  	78,9,1,0,0,0,79,83,5,45,0,0,80,82,3,12,6,0,81,80,1,0,0,0,82,85,1,0,0,
+  	0,83,81,1,0,0,0,83,84,1,0,0,0,84,86,1,0,0,0,85,83,1,0,0,0,86,87,5,46,
+  	0,0,87,11,1,0,0,0,88,94,3,14,7,0,89,94,3,16,8,0,90,94,3,20,10,0,91,94,
+  	3,22,11,0,92,94,3,28,14,0,93,88,1,0,0,0,93,89,1,0,0,0,93,90,1,0,0,0,93,
+  	91,1,0,0,0,93,92,1,0,0,0,94,13,1,0,0,0,95,96,5,4,0,0,96,97,5,14,0,0,97,
+  	99,5,40,0,0,98,100,3,36,18,0,99,98,1,0,0,0,99,100,1,0,0,0,100,101,1,0,
+  	0,0,101,102,5,39,0,0,102,103,3,30,15,0,103,104,5,41,0,0,104,15,1,0,0,
+  	0,105,106,5,14,0,0,106,107,3,18,9,0,107,108,3,30,15,0,108,109,5,41,0,
+  	0,109,17,1,0,0,0,110,111,7,0,0,0,111,19,1,0,0,0,112,113,5,5,0,0,113,114,
+  	3,30,15,0,114,115,5,41,0,0,115,21,1,0,0,0,116,117,5,6,0,0,117,118,3,30,
+  	15,0,118,122,3,10,5,0,119,121,3,24,12,0,120,119,1,0,0,0,121,124,1,0,0,
+  	0,122,120,1,0,0,0,122,123,1,0,0,0,123,126,1,0,0,0,124,122,1,0,0,0,125,
+  	127,3,26,13,0,126,125,1,0,0,0,126,127,1,0,0,0,127,23,1,0,0,0,128,129,
+  	5,7,0,0,129,130,5,6,0,0,130,131,3,30,15,0,131,132,3,10,5,0,132,25,1,0,
+  	0,0,133,134,5,7,0,0,134,135,3,10,5,0,135,27,1,0,0,0,136,137,3,30,15,0,
+  	137,138,5,41,0,0,138,29,1,0,0,0,139,140,6,15,-1,0,140,152,5,14,0,0,141,
+  	152,5,15,0,0,142,152,5,16,0,0,143,152,5,17,0,0,144,152,5,18,0,0,145,152,
+  	5,19,0,0,146,152,3,32,16,0,147,148,5,43,0,0,148,149,3,30,15,0,149,150,
+  	5,44,0,0,150,152,1,0,0,0,151,139,1,0,0,0,151,141,1,0,0,0,151,142,1,0,
+  	0,0,151,143,1,0,0,0,151,144,1,0,0,0,151,145,1,0,0,0,151,146,1,0,0,0,151,
+  	147,1,0,0,0,152,161,1,0,0,0,153,154,10,10,0,0,154,155,7,1,0,0,155,160,
+  	3,30,15,11,156,157,10,9,0,0,157,158,7,2,0,0,158,160,3,30,15,10,159,153,
+  	1,0,0,0,159,156,1,0,0,0,160,163,1,0,0,0,161,159,1,0,0,0,161,162,1,0,0,
+  	0,162,31,1,0,0,0,163,161,1,0,0,0,164,165,5,14,0,0,165,167,5,43,0,0,166,
+  	168,3,34,17,0,167,166,1,0,0,0,167,168,1,0,0,0,168,169,1,0,0,0,169,170,
+  	5,44,0,0,170,33,1,0,0,0,171,176,3,30,15,0,172,173,5,42,0,0,173,175,3,
+  	30,15,0,174,172,1,0,0,0,175,178,1,0,0,0,176,174,1,0,0,0,176,177,1,0,0,
+  	0,177,35,1,0,0,0,178,176,1,0,0,0,179,180,7,3,0,0,180,37,1,0,0,0,15,41,
+  	43,58,63,72,83,93,99,122,126,151,159,161,167,176
   };
   staticData->serializedATN = antlr4::atn::SerializedATNView(serializedATNSegment, sizeof(serializedATNSegment) / sizeof(serializedATNSegment[0]));
 
@@ -241,12 +252,12 @@ threeboltParser::ProgramContext* threeboltParser::program() {
   });
   try {
     enterOuterAlt(_localctx, 1);
-    setState(37);
+    setState(43);
     _errHandler->sync(this);
     _la = _input->LA(1);
     while ((((_la & ~ 0x3fULL) == 0) &&
-      ((1ULL << _la) & 137439469690) != 0)) {
-      setState(35);
+      ((1ULL << _la) & 8796094054522) != 0)) {
+      setState(41);
       _errHandler->sync(this);
       switch (_input->LA(1)) {
         case threeboltParser::KEYWORD_LET:
@@ -259,19 +270,19 @@ threeboltParser::ProgramContext* threeboltParser::program() {
         case threeboltParser::BOOL_LITERAL:
         case threeboltParser::STRING_LITERAL:
         case threeboltParser::LPAREN: {
-          setState(32);
+          setState(38);
           statement();
           break;
         }
 
         case threeboltParser::KEYWORD_FN: {
-          setState(33);
+          setState(39);
           functionDecl();
           break;
         }
 
         case threeboltParser::KEYWORD_FROM: {
-          setState(34);
+          setState(40);
           importStmt();
           break;
         }
@@ -279,7 +290,7 @@ threeboltParser::ProgramContext* threeboltParser::program() {
       default:
         throw NoViableAltException(this);
       }
-      setState(39);
+      setState(45);
       _errHandler->sync(this);
       _la = _input->LA(1);
     }
@@ -366,19 +377,19 @@ threeboltParser::ImportStmtContext* threeboltParser::importStmt() {
   });
   try {
     enterOuterAlt(_localctx, 1);
-    setState(40);
-    match(threeboltParser::KEYWORD_FROM);
-    setState(41);
-    match(threeboltParser::ID);
-    setState(42);
-    match(threeboltParser::DOUBLE_COLON);
-    setState(43);
-    match(threeboltParser::ID);
-    setState(44);
-    match(threeboltParser::KEYWORD_IMPORT);
-    setState(45);
-    match(threeboltParser::STAR);
     setState(46);
+    match(threeboltParser::KEYWORD_FROM);
+    setState(47);
+    match(threeboltParser::ID);
+    setState(48);
+    match(threeboltParser::DOUBLE_COLON);
+    setState(49);
+    match(threeboltParser::ID);
+    setState(50);
+    match(threeboltParser::KEYWORD_IMPORT);
+    setState(51);
+    match(threeboltParser::STAR);
+    setState(52);
     match(threeboltParser::SEMICOLON);
    
   }
@@ -468,33 +479,33 @@ threeboltParser::FunctionDeclContext* threeboltParser::functionDecl() {
   });
   try {
     enterOuterAlt(_localctx, 1);
-    setState(48);
+    setState(54);
     match(threeboltParser::KEYWORD_FN);
-    setState(49);
+    setState(55);
     match(threeboltParser::ID);
-    setState(50);
+    setState(56);
     match(threeboltParser::LPAREN);
-    setState(52);
+    setState(58);
     _errHandler->sync(this);
 
     _la = _input->LA(1);
     if (_la == threeboltParser::ID) {
-      setState(51);
+      setState(57);
       parameters();
     }
-    setState(54);
+    setState(60);
     match(threeboltParser::RPAREN);
-    setState(57);
+    setState(63);
     _errHandler->sync(this);
 
     _la = _input->LA(1);
     if (_la == threeboltParser::ARROW) {
-      setState(55);
+      setState(61);
       match(threeboltParser::ARROW);
-      setState(56);
+      setState(62);
       type();
     }
-    setState(59);
+    setState(65);
     block();
    
   }
@@ -568,17 +579,17 @@ threeboltParser::ParametersContext* threeboltParser::parameters() {
   });
   try {
     enterOuterAlt(_localctx, 1);
-    setState(61);
+    setState(67);
     parameter();
-    setState(66);
+    setState(72);
     _errHandler->sync(this);
     _la = _input->LA(1);
     while (_la == threeboltParser::COMMA) {
-      setState(62);
-      match(threeboltParser::COMMA);
-      setState(63);
-      parameter();
       setState(68);
+      match(threeboltParser::COMMA);
+      setState(69);
+      parameter();
+      setState(74);
       _errHandler->sync(this);
       _la = _input->LA(1);
     }
@@ -649,11 +660,11 @@ threeboltParser::ParameterContext* threeboltParser::parameter() {
   });
   try {
     enterOuterAlt(_localctx, 1);
-    setState(69);
+    setState(75);
     match(threeboltParser::ID);
-    setState(70);
+    setState(76);
     match(threeboltParser::COLON);
-    setState(71);
+    setState(77);
     type();
    
   }
@@ -727,20 +738,20 @@ threeboltParser::BlockContext* threeboltParser::block() {
   });
   try {
     enterOuterAlt(_localctx, 1);
-    setState(73);
+    setState(79);
     match(threeboltParser::LBRACE);
-    setState(77);
+    setState(83);
     _errHandler->sync(this);
     _la = _input->LA(1);
     while ((((_la & ~ 0x3fULL) == 0) &&
-      ((1ULL << _la) & 137439469680) != 0)) {
-      setState(74);
+      ((1ULL << _la) & 8796094054512) != 0)) {
+      setState(80);
       statement();
-      setState(79);
+      setState(85);
       _errHandler->sync(this);
       _la = _input->LA(1);
     }
-    setState(80);
+    setState(86);
     match(threeboltParser::RBRACE);
    
   }
@@ -816,40 +827,40 @@ threeboltParser::StatementContext* threeboltParser::statement() {
     exitRule();
   });
   try {
-    setState(87);
+    setState(93);
     _errHandler->sync(this);
     switch (getInterpreter<atn::ParserATNSimulator>()->adaptivePredict(_input, 6, _ctx)) {
     case 1: {
       enterOuterAlt(_localctx, 1);
-      setState(82);
+      setState(88);
       variableDecl();
       break;
     }
 
     case 2: {
       enterOuterAlt(_localctx, 2);
-      setState(83);
+      setState(89);
       assignment();
       break;
     }
 
     case 3: {
       enterOuterAlt(_localctx, 3);
-      setState(84);
+      setState(90);
       returnStmt();
       break;
     }
 
     case 4: {
       enterOuterAlt(_localctx, 4);
-      setState(85);
+      setState(91);
       ifStmt();
       break;
     }
 
     case 5: {
       enterOuterAlt(_localctx, 5);
-      setState(86);
+      setState(92);
       exprStmt();
       break;
     }
@@ -941,26 +952,26 @@ threeboltParser::VariableDeclContext* threeboltParser::variableDecl() {
   });
   try {
     enterOuterAlt(_localctx, 1);
-    setState(89);
+    setState(95);
     match(threeboltParser::KEYWORD_LET);
-    setState(90);
+    setState(96);
     match(threeboltParser::ID);
-    setState(91);
+    setState(97);
     match(threeboltParser::COLON);
-    setState(93);
+    setState(99);
     _errHandler->sync(this);
 
     _la = _input->LA(1);
     if ((((_la & ~ 0x3fULL) == 0) &&
-      ((1ULL << _la) & 7680) != 0)) {
-      setState(92);
+      ((1ULL << _la) & 15360) != 0)) {
+      setState(98);
       type();
     }
-    setState(95);
+    setState(101);
     match(threeboltParser::ASSIGN);
-    setState(96);
+    setState(102);
     expr(0);
-    setState(97);
+    setState(103);
     match(threeboltParser::SEMICOLON);
    
   }
@@ -983,8 +994,8 @@ tree::TerminalNode* threeboltParser::AssignmentContext::ID() {
   return getToken(threeboltParser::ID, 0);
 }
 
-tree::TerminalNode* threeboltParser::AssignmentContext::ASSIGN() {
-  return getToken(threeboltParser::ASSIGN, 0);
+threeboltParser::AssignmentOperatorContext* threeboltParser::AssignmentContext::assignmentOperator() {
+  return getRuleContext<threeboltParser::AssignmentOperatorContext>(0);
 }
 
 threeboltParser::ExprContext* threeboltParser::AssignmentContext::expr() {
@@ -1033,14 +1044,100 @@ threeboltParser::AssignmentContext* threeboltParser::assignment() {
   });
   try {
     enterOuterAlt(_localctx, 1);
-    setState(99);
+    setState(105);
     match(threeboltParser::ID);
-    setState(100);
-    match(threeboltParser::ASSIGN);
-    setState(101);
+    setState(106);
+    assignmentOperator();
+    setState(107);
     expr(0);
-    setState(102);
+    setState(108);
     match(threeboltParser::SEMICOLON);
+   
+  }
+  catch (RecognitionException &e) {
+    _errHandler->reportError(this, e);
+    _localctx->exception = std::current_exception();
+    _errHandler->recover(this, _localctx->exception);
+  }
+
+  return _localctx;
+}
+
+//----------------- AssignmentOperatorContext ------------------------------------------------------------------
+
+threeboltParser::AssignmentOperatorContext::AssignmentOperatorContext(ParserRuleContext *parent, size_t invokingState)
+  : ParserRuleContext(parent, invokingState) {
+}
+
+tree::TerminalNode* threeboltParser::AssignmentOperatorContext::ASSIGN() {
+  return getToken(threeboltParser::ASSIGN, 0);
+}
+
+tree::TerminalNode* threeboltParser::AssignmentOperatorContext::PLUSEQ() {
+  return getToken(threeboltParser::PLUSEQ, 0);
+}
+
+tree::TerminalNode* threeboltParser::AssignmentOperatorContext::MINUSEQ() {
+  return getToken(threeboltParser::MINUSEQ, 0);
+}
+
+tree::TerminalNode* threeboltParser::AssignmentOperatorContext::STAREQ() {
+  return getToken(threeboltParser::STAREQ, 0);
+}
+
+tree::TerminalNode* threeboltParser::AssignmentOperatorContext::DIVEQ() {
+  return getToken(threeboltParser::DIVEQ, 0);
+}
+
+
+size_t threeboltParser::AssignmentOperatorContext::getRuleIndex() const {
+  return threeboltParser::RuleAssignmentOperator;
+}
+
+void threeboltParser::AssignmentOperatorContext::enterRule(tree::ParseTreeListener *listener) {
+  auto parserListener = dynamic_cast<threeboltListener *>(listener);
+  if (parserListener != nullptr)
+    parserListener->enterAssignmentOperator(this);
+}
+
+void threeboltParser::AssignmentOperatorContext::exitRule(tree::ParseTreeListener *listener) {
+  auto parserListener = dynamic_cast<threeboltListener *>(listener);
+  if (parserListener != nullptr)
+    parserListener->exitAssignmentOperator(this);
+}
+
+
+std::any threeboltParser::AssignmentOperatorContext::accept(tree::ParseTreeVisitor *visitor) {
+  if (auto parserVisitor = dynamic_cast<threeboltVisitor*>(visitor))
+    return parserVisitor->visitAssignmentOperator(this);
+  else
+    return visitor->visitChildren(this);
+}
+
+threeboltParser::AssignmentOperatorContext* threeboltParser::assignmentOperator() {
+  AssignmentOperatorContext *_localctx = _tracker.createInstance<AssignmentOperatorContext>(_ctx, getState());
+  enterRule(_localctx, 18, threeboltParser::RuleAssignmentOperator);
+  size_t _la = 0;
+
+#if __cplusplus > 201703L
+  auto onExit = finally([=, this] {
+#else
+  auto onExit = finally([=] {
+#endif
+    exitRule();
+  });
+  try {
+    enterOuterAlt(_localctx, 1);
+    setState(110);
+    _la = _input->LA(1);
+    if (!((((_la & ~ 0x3fULL) == 0) &&
+      ((1ULL << _la) & 553782345728) != 0))) {
+    _errHandler->recoverInline(this);
+    }
+    else {
+      _errHandler->reportMatch(this);
+      consume();
+    }
    
   }
   catch (RecognitionException &e) {
@@ -1097,7 +1194,7 @@ std::any threeboltParser::ReturnStmtContext::accept(tree::ParseTreeVisitor *visi
 
 threeboltParser::ReturnStmtContext* threeboltParser::returnStmt() {
   ReturnStmtContext *_localctx = _tracker.createInstance<ReturnStmtContext>(_ctx, getState());
-  enterRule(_localctx, 18, threeboltParser::RuleReturnStmt);
+  enterRule(_localctx, 20, threeboltParser::RuleReturnStmt);
 
 #if __cplusplus > 201703L
   auto onExit = finally([=, this] {
@@ -1108,11 +1205,11 @@ threeboltParser::ReturnStmtContext* threeboltParser::returnStmt() {
   });
   try {
     enterOuterAlt(_localctx, 1);
-    setState(104);
+    setState(112);
     match(threeboltParser::KEYWORD_RETURN);
-    setState(105);
+    setState(113);
     expr(0);
-    setState(106);
+    setState(114);
     match(threeboltParser::SEMICOLON);
    
   }
@@ -1143,6 +1240,18 @@ threeboltParser::BlockContext* threeboltParser::IfStmtContext::block() {
   return getRuleContext<threeboltParser::BlockContext>(0);
 }
 
+std::vector<threeboltParser::ElseIfStmtContext *> threeboltParser::IfStmtContext::elseIfStmt() {
+  return getRuleContexts<threeboltParser::ElseIfStmtContext>();
+}
+
+threeboltParser::ElseIfStmtContext* threeboltParser::IfStmtContext::elseIfStmt(size_t i) {
+  return getRuleContext<threeboltParser::ElseIfStmtContext>(i);
+}
+
+threeboltParser::ElseStmtContext* threeboltParser::IfStmtContext::elseStmt() {
+  return getRuleContext<threeboltParser::ElseStmtContext>(0);
+}
+
 
 size_t threeboltParser::IfStmtContext::getRuleIndex() const {
   return threeboltParser::RuleIfStmt;
@@ -1170,7 +1279,106 @@ std::any threeboltParser::IfStmtContext::accept(tree::ParseTreeVisitor *visitor)
 
 threeboltParser::IfStmtContext* threeboltParser::ifStmt() {
   IfStmtContext *_localctx = _tracker.createInstance<IfStmtContext>(_ctx, getState());
-  enterRule(_localctx, 20, threeboltParser::RuleIfStmt);
+  enterRule(_localctx, 22, threeboltParser::RuleIfStmt);
+  size_t _la = 0;
+
+#if __cplusplus > 201703L
+  auto onExit = finally([=, this] {
+#else
+  auto onExit = finally([=] {
+#endif
+    exitRule();
+  });
+  try {
+    size_t alt;
+    enterOuterAlt(_localctx, 1);
+    setState(116);
+    match(threeboltParser::KEYWORD_IF);
+    setState(117);
+    expr(0);
+    setState(118);
+    block();
+    setState(122);
+    _errHandler->sync(this);
+    alt = getInterpreter<atn::ParserATNSimulator>()->adaptivePredict(_input, 8, _ctx);
+    while (alt != 2 && alt != atn::ATN::INVALID_ALT_NUMBER) {
+      if (alt == 1) {
+        setState(119);
+        elseIfStmt(); 
+      }
+      setState(124);
+      _errHandler->sync(this);
+      alt = getInterpreter<atn::ParserATNSimulator>()->adaptivePredict(_input, 8, _ctx);
+    }
+    setState(126);
+    _errHandler->sync(this);
+
+    _la = _input->LA(1);
+    if (_la == threeboltParser::KEYWORD_ELSE) {
+      setState(125);
+      elseStmt();
+    }
+   
+  }
+  catch (RecognitionException &e) {
+    _errHandler->reportError(this, e);
+    _localctx->exception = std::current_exception();
+    _errHandler->recover(this, _localctx->exception);
+  }
+
+  return _localctx;
+}
+
+//----------------- ElseIfStmtContext ------------------------------------------------------------------
+
+threeboltParser::ElseIfStmtContext::ElseIfStmtContext(ParserRuleContext *parent, size_t invokingState)
+  : ParserRuleContext(parent, invokingState) {
+}
+
+tree::TerminalNode* threeboltParser::ElseIfStmtContext::KEYWORD_ELSE() {
+  return getToken(threeboltParser::KEYWORD_ELSE, 0);
+}
+
+tree::TerminalNode* threeboltParser::ElseIfStmtContext::KEYWORD_IF() {
+  return getToken(threeboltParser::KEYWORD_IF, 0);
+}
+
+threeboltParser::ExprContext* threeboltParser::ElseIfStmtContext::expr() {
+  return getRuleContext<threeboltParser::ExprContext>(0);
+}
+
+threeboltParser::BlockContext* threeboltParser::ElseIfStmtContext::block() {
+  return getRuleContext<threeboltParser::BlockContext>(0);
+}
+
+
+size_t threeboltParser::ElseIfStmtContext::getRuleIndex() const {
+  return threeboltParser::RuleElseIfStmt;
+}
+
+void threeboltParser::ElseIfStmtContext::enterRule(tree::ParseTreeListener *listener) {
+  auto parserListener = dynamic_cast<threeboltListener *>(listener);
+  if (parserListener != nullptr)
+    parserListener->enterElseIfStmt(this);
+}
+
+void threeboltParser::ElseIfStmtContext::exitRule(tree::ParseTreeListener *listener) {
+  auto parserListener = dynamic_cast<threeboltListener *>(listener);
+  if (parserListener != nullptr)
+    parserListener->exitElseIfStmt(this);
+}
+
+
+std::any threeboltParser::ElseIfStmtContext::accept(tree::ParseTreeVisitor *visitor) {
+  if (auto parserVisitor = dynamic_cast<threeboltVisitor*>(visitor))
+    return parserVisitor->visitElseIfStmt(this);
+  else
+    return visitor->visitChildren(this);
+}
+
+threeboltParser::ElseIfStmtContext* threeboltParser::elseIfStmt() {
+  ElseIfStmtContext *_localctx = _tracker.createInstance<ElseIfStmtContext>(_ctx, getState());
+  enterRule(_localctx, 24, threeboltParser::RuleElseIfStmt);
 
 #if __cplusplus > 201703L
   auto onExit = finally([=, this] {
@@ -1181,11 +1389,80 @@ threeboltParser::IfStmtContext* threeboltParser::ifStmt() {
   });
   try {
     enterOuterAlt(_localctx, 1);
-    setState(108);
+    setState(128);
+    match(threeboltParser::KEYWORD_ELSE);
+    setState(129);
     match(threeboltParser::KEYWORD_IF);
-    setState(109);
+    setState(130);
     expr(0);
-    setState(110);
+    setState(131);
+    block();
+   
+  }
+  catch (RecognitionException &e) {
+    _errHandler->reportError(this, e);
+    _localctx->exception = std::current_exception();
+    _errHandler->recover(this, _localctx->exception);
+  }
+
+  return _localctx;
+}
+
+//----------------- ElseStmtContext ------------------------------------------------------------------
+
+threeboltParser::ElseStmtContext::ElseStmtContext(ParserRuleContext *parent, size_t invokingState)
+  : ParserRuleContext(parent, invokingState) {
+}
+
+tree::TerminalNode* threeboltParser::ElseStmtContext::KEYWORD_ELSE() {
+  return getToken(threeboltParser::KEYWORD_ELSE, 0);
+}
+
+threeboltParser::BlockContext* threeboltParser::ElseStmtContext::block() {
+  return getRuleContext<threeboltParser::BlockContext>(0);
+}
+
+
+size_t threeboltParser::ElseStmtContext::getRuleIndex() const {
+  return threeboltParser::RuleElseStmt;
+}
+
+void threeboltParser::ElseStmtContext::enterRule(tree::ParseTreeListener *listener) {
+  auto parserListener = dynamic_cast<threeboltListener *>(listener);
+  if (parserListener != nullptr)
+    parserListener->enterElseStmt(this);
+}
+
+void threeboltParser::ElseStmtContext::exitRule(tree::ParseTreeListener *listener) {
+  auto parserListener = dynamic_cast<threeboltListener *>(listener);
+  if (parserListener != nullptr)
+    parserListener->exitElseStmt(this);
+}
+
+
+std::any threeboltParser::ElseStmtContext::accept(tree::ParseTreeVisitor *visitor) {
+  if (auto parserVisitor = dynamic_cast<threeboltVisitor*>(visitor))
+    return parserVisitor->visitElseStmt(this);
+  else
+    return visitor->visitChildren(this);
+}
+
+threeboltParser::ElseStmtContext* threeboltParser::elseStmt() {
+  ElseStmtContext *_localctx = _tracker.createInstance<ElseStmtContext>(_ctx, getState());
+  enterRule(_localctx, 26, threeboltParser::RuleElseStmt);
+
+#if __cplusplus > 201703L
+  auto onExit = finally([=, this] {
+#else
+  auto onExit = finally([=] {
+#endif
+    exitRule();
+  });
+  try {
+    enterOuterAlt(_localctx, 1);
+    setState(133);
+    match(threeboltParser::KEYWORD_ELSE);
+    setState(134);
     block();
    
   }
@@ -1239,7 +1516,7 @@ std::any threeboltParser::ExprStmtContext::accept(tree::ParseTreeVisitor *visito
 
 threeboltParser::ExprStmtContext* threeboltParser::exprStmt() {
   ExprStmtContext *_localctx = _tracker.createInstance<ExprStmtContext>(_ctx, getState());
-  enterRule(_localctx, 22, threeboltParser::RuleExprStmt);
+  enterRule(_localctx, 28, threeboltParser::RuleExprStmt);
 
 #if __cplusplus > 201703L
   auto onExit = finally([=, this] {
@@ -1250,9 +1527,9 @@ threeboltParser::ExprStmtContext* threeboltParser::exprStmt() {
   });
   try {
     enterOuterAlt(_localctx, 1);
-    setState(112);
+    setState(136);
     expr(0);
-    setState(113);
+    setState(137);
     match(threeboltParser::SEMICOLON);
    
   }
@@ -1395,8 +1672,8 @@ threeboltParser::ExprContext* threeboltParser::expr(int precedence) {
   threeboltParser::ExprContext *_localctx = _tracker.createInstance<ExprContext>(_ctx, parentState);
   threeboltParser::ExprContext *previousContext = _localctx;
   (void)previousContext; // Silence compiler, in case the context is not used by generated code.
-  size_t startState = 24;
-  enterRecursionRule(_localctx, 24, threeboltParser::RuleExpr, precedence);
+  size_t startState = 30;
+  enterRecursionRule(_localctx, 30, threeboltParser::RuleExpr, precedence);
 
     size_t _la = 0;
 
@@ -1410,57 +1687,57 @@ threeboltParser::ExprContext* threeboltParser::expr(int precedence) {
   try {
     size_t alt;
     enterOuterAlt(_localctx, 1);
-    setState(127);
+    setState(151);
     _errHandler->sync(this);
-    switch (getInterpreter<atn::ParserATNSimulator>()->adaptivePredict(_input, 8, _ctx)) {
+    switch (getInterpreter<atn::ParserATNSimulator>()->adaptivePredict(_input, 10, _ctx)) {
     case 1: {
-      setState(116);
+      setState(140);
       match(threeboltParser::ID);
       break;
     }
 
     case 2: {
-      setState(117);
+      setState(141);
       match(threeboltParser::INT_LITERAL);
       break;
     }
 
     case 3: {
-      setState(118);
+      setState(142);
       match(threeboltParser::FLOAT_LITERAL);
       break;
     }
 
     case 4: {
-      setState(119);
+      setState(143);
       match(threeboltParser::CHAR_LITERAL);
       break;
     }
 
     case 5: {
-      setState(120);
+      setState(144);
       match(threeboltParser::BOOL_LITERAL);
       break;
     }
 
     case 6: {
-      setState(121);
+      setState(145);
       match(threeboltParser::STRING_LITERAL);
       break;
     }
 
     case 7: {
-      setState(122);
+      setState(146);
       functionCall();
       break;
     }
 
     case 8: {
-      setState(123);
+      setState(147);
       match(threeboltParser::LPAREN);
-      setState(124);
+      setState(148);
       expr(0);
-      setState(125);
+      setState(149);
       match(threeboltParser::RPAREN);
       break;
     }
@@ -1469,34 +1746,34 @@ threeboltParser::ExprContext* threeboltParser::expr(int precedence) {
       break;
     }
     _ctx->stop = _input->LT(-1);
-    setState(137);
+    setState(161);
     _errHandler->sync(this);
-    alt = getInterpreter<atn::ParserATNSimulator>()->adaptivePredict(_input, 10, _ctx);
+    alt = getInterpreter<atn::ParserATNSimulator>()->adaptivePredict(_input, 12, _ctx);
     while (alt != 2 && alt != atn::ATN::INVALID_ALT_NUMBER) {
       if (alt == 1) {
         if (!_parseListeners.empty())
           triggerExitRuleEvent();
         previousContext = _localctx;
-        setState(135);
+        setState(159);
         _errHandler->sync(this);
-        switch (getInterpreter<atn::ParserATNSimulator>()->adaptivePredict(_input, 9, _ctx)) {
+        switch (getInterpreter<atn::ParserATNSimulator>()->adaptivePredict(_input, 11, _ctx)) {
         case 1: {
           _localctx = _tracker.createInstance<ExprContext>(parentContext, parentState);
           pushNewRecursionContext(_localctx, startState, RuleExpr);
-          setState(129);
+          setState(153);
 
           if (!(precpred(_ctx, 10))) throw FailedPredicateException(this, "precpred(_ctx, 10)");
-          setState(130);
+          setState(154);
           _la = _input->LA(1);
           if (!((((_la & ~ 0x3fULL) == 0) &&
-            ((1ULL << _la) & 130023424) != 0))) {
+            ((1ULL << _la) & 260046848) != 0))) {
           _errHandler->recoverInline(this);
           }
           else {
             _errHandler->reportMatch(this);
             consume();
           }
-          setState(131);
+          setState(155);
           expr(11);
           break;
         }
@@ -1504,20 +1781,20 @@ threeboltParser::ExprContext* threeboltParser::expr(int precedence) {
         case 2: {
           _localctx = _tracker.createInstance<ExprContext>(parentContext, parentState);
           pushNewRecursionContext(_localctx, startState, RuleExpr);
-          setState(132);
+          setState(156);
 
           if (!(precpred(_ctx, 9))) throw FailedPredicateException(this, "precpred(_ctx, 9)");
-          setState(133);
+          setState(157);
           _la = _input->LA(1);
           if (!((((_la & ~ 0x3fULL) == 0) &&
-            ((1ULL << _la) & 8455716864) != 0))) {
+            ((1ULL << _la) & 541165879296) != 0))) {
           _errHandler->recoverInline(this);
           }
           else {
             _errHandler->reportMatch(this);
             consume();
           }
-          setState(134);
+          setState(158);
           expr(10);
           break;
         }
@@ -1526,9 +1803,9 @@ threeboltParser::ExprContext* threeboltParser::expr(int precedence) {
           break;
         } 
       }
-      setState(139);
+      setState(163);
       _errHandler->sync(this);
-      alt = getInterpreter<atn::ParserATNSimulator>()->adaptivePredict(_input, 10, _ctx);
+      alt = getInterpreter<atn::ParserATNSimulator>()->adaptivePredict(_input, 12, _ctx);
     }
   }
   catch (RecognitionException &e) {
@@ -1588,7 +1865,7 @@ std::any threeboltParser::FunctionCallContext::accept(tree::ParseTreeVisitor *vi
 
 threeboltParser::FunctionCallContext* threeboltParser::functionCall() {
   FunctionCallContext *_localctx = _tracker.createInstance<FunctionCallContext>(_ctx, getState());
-  enterRule(_localctx, 26, threeboltParser::RuleFunctionCall);
+  enterRule(_localctx, 32, threeboltParser::RuleFunctionCall);
   size_t _la = 0;
 
 #if __cplusplus > 201703L
@@ -1600,20 +1877,20 @@ threeboltParser::FunctionCallContext* threeboltParser::functionCall() {
   });
   try {
     enterOuterAlt(_localctx, 1);
-    setState(140);
+    setState(164);
     match(threeboltParser::ID);
-    setState(141);
+    setState(165);
     match(threeboltParser::LPAREN);
-    setState(143);
+    setState(167);
     _errHandler->sync(this);
 
     _la = _input->LA(1);
     if ((((_la & ~ 0x3fULL) == 0) &&
-      ((1ULL << _la) & 137439469568) != 0)) {
-      setState(142);
+      ((1ULL << _la) & 8796094054400) != 0)) {
+      setState(166);
       arguments();
     }
-    setState(145);
+    setState(169);
     match(threeboltParser::RPAREN);
    
   }
@@ -1675,7 +1952,7 @@ std::any threeboltParser::ArgumentsContext::accept(tree::ParseTreeVisitor *visit
 
 threeboltParser::ArgumentsContext* threeboltParser::arguments() {
   ArgumentsContext *_localctx = _tracker.createInstance<ArgumentsContext>(_ctx, getState());
-  enterRule(_localctx, 28, threeboltParser::RuleArguments);
+  enterRule(_localctx, 34, threeboltParser::RuleArguments);
   size_t _la = 0;
 
 #if __cplusplus > 201703L
@@ -1687,17 +1964,17 @@ threeboltParser::ArgumentsContext* threeboltParser::arguments() {
   });
   try {
     enterOuterAlt(_localctx, 1);
-    setState(147);
+    setState(171);
     expr(0);
-    setState(152);
+    setState(176);
     _errHandler->sync(this);
     _la = _input->LA(1);
     while (_la == threeboltParser::COMMA) {
-      setState(148);
+      setState(172);
       match(threeboltParser::COMMA);
-      setState(149);
+      setState(173);
       expr(0);
-      setState(154);
+      setState(178);
       _errHandler->sync(this);
       _la = _input->LA(1);
     }
@@ -1761,7 +2038,7 @@ std::any threeboltParser::TypeContext::accept(tree::ParseTreeVisitor *visitor) {
 
 threeboltParser::TypeContext* threeboltParser::type() {
   TypeContext *_localctx = _tracker.createInstance<TypeContext>(_ctx, getState());
-  enterRule(_localctx, 30, threeboltParser::RuleType);
+  enterRule(_localctx, 36, threeboltParser::RuleType);
   size_t _la = 0;
 
 #if __cplusplus > 201703L
@@ -1773,10 +2050,10 @@ threeboltParser::TypeContext* threeboltParser::type() {
   });
   try {
     enterOuterAlt(_localctx, 1);
-    setState(155);
+    setState(179);
     _la = _input->LA(1);
     if (!((((_la & ~ 0x3fULL) == 0) &&
-      ((1ULL << _la) & 7680) != 0))) {
+      ((1ULL << _la) & 15360) != 0))) {
     _errHandler->recoverInline(this);
     }
     else {
@@ -1796,7 +2073,7 @@ threeboltParser::TypeContext* threeboltParser::type() {
 
 bool threeboltParser::sempred(RuleContext *context, size_t ruleIndex, size_t predicateIndex) {
   switch (ruleIndex) {
-    case 12: return exprSempred(antlrcpp::downCast<ExprContext *>(context), predicateIndex);
+    case 15: return exprSempred(antlrcpp::downCast<ExprContext *>(context), predicateIndex);
 
   default:
     break;

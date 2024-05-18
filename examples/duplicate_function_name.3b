@@ -1,0 +1,28 @@
+fn sum(x: int, y: int) -> int {
+    let z := x + y;
+    return z;
+}
+
+fn main() {
+    let x := 5;
+    let y := 6;
+    println(x + y);
+}
+
+fn complex_scope(x: int) {
+    let y := x + 1;
+    x += 1;
+
+    if x < 5 {
+        let z := y - x;
+    } else {
+        if y > 10 {
+            let z := x - y;
+        }
+    }
+}
+
+// note: function return type has no effect on overloading. i.e. this symbol clashes with sum defined above.
+fn sum(g: int, p: int) -> int? {
+
+}

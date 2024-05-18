@@ -7,6 +7,7 @@ KEYWORD_FN: 'fn';
 KEYWORD_LET: 'let';
 KEYWORD_RETURN: 'return';
 KEYWORD_IF: 'if';
+KEYWORD_ELSE: 'else';
 KEYWORD_TRUE: 'true';
 KEYWORD_FALSE: 'false';
 KEYWORD_INT: 'int';
@@ -31,6 +32,11 @@ MINUS: '-';
 STAR: '*';
 DIV: '/';
 MOD: '%';
+PLUSEQ: '+=';
+MINUSEQ: '-=';
+STAREQ: '*=';
+DIVEQ: '/=';
+MODEQ: '%=';
 
 EQ: '==';
 NEQ: '!=';
@@ -69,9 +75,29 @@ statement: variableDecl
          ;
 
 variableDecl: KEYWORD_LET ID COLON type? ASSIGN expr SEMICOLON;
-assignment: ID ASSIGN expr SEMICOLON;
+assignment: ID assignmentOperator expr SEMICOLON;
+
+assignmentOperator
+    : ASSIGN
+    | PLUSEQ
+    | MINUSEQ
+    | STAREQ
+    | DIVEQ
+    ;
+
 returnStmt: KEYWORD_RETURN expr SEMICOLON;
-ifStmt: KEYWORD_IF expr block;
+
+ifStmt
+    : KEYWORD_IF expr block elseIfStmt* elseStmt?
+    ;
+
+elseIfStmt
+    : KEYWORD_ELSE KEYWORD_IF expr block
+    ;
+
+elseStmt
+    : KEYWORD_ELSE block
+    ;
 
 exprStmt: expr SEMICOLON;
 
