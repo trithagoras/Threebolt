@@ -8,6 +8,7 @@ Scope::Scope(std::string name, Scope* parent) {
         this->longname = std::format("{}::{}", parent->longname, name);
     }
     this->parent = parent;
+    this->scopeCount = 0;
 }
 
 std::shared_ptr<Symbol> Scope::find_symbol(const std::string& id) const {

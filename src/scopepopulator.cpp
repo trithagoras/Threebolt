@@ -5,8 +5,6 @@
 #include <algorithm>
 #include <numeric>
 
-
-
 Type str_to_type(const std::string& type) {
     if (type == "int") {
         return Type::INT;
@@ -46,6 +44,11 @@ std::string join_param_types(const std::vector<Symbol>& symbols) {
     return result;
 }
 
+void ScopePopulator::push_scope(const std::string& name) {
+    scopeStack.push(std::make_shared<Scope>(name, scopeStack.top().get()));
+    scopeTable.add_scope(scopeStack.top());
+}
+
 std::any ScopePopulator::visitFunctionDecl(threeboltParser::FunctionDeclContext *ctx) {
     auto paramSymbols = ctx->parameters() ? std::any_cast<std::vector<Symbol>>(visit(ctx->parameters())) : std::vector<Symbol>();
     auto paramTypeNames = join_param_types(paramSymbols);
@@ -56,14 +59,14 @@ std::any ScopePopulator::visitFunctionDecl(threeboltParser::FunctionDeclContext 
     }
 
     // check if symbol already defined in this scope (or any parent scope)
-    if (!scopeStack.empty() && scopeStack.top()->find_symbol(shortname)) {
+    if (scopeStack.top()->find_symbol(shortname)) {
         errorLogger.logError(std::format("Symbol {} already defined in this or previous scope.", shortname), ctx->getStart()->getLine(), ctx->getStart()->getCharPositionInLine());
+    } else {
+        scopeStack.top()->add_symbol(std::make_shared<Symbol>(shortname, Type::FN));
     }
-    scopeStack.top()->add_symbol(std::make_shared<Symbol>(shortname, Type::FN));
 
     // create new scope and push it onto the stack
-    auto scope = std::make_unique<Scope>(shortname, scopeStack.empty() ? nullptr : scopeStack.top().get());
-    scopeStack.push(std::move(scope));
+    push_scope(shortname);
     std::cout << "New function scope created: " << shortname << std::endl;
 
     // enter fn
@@ -71,12 +74,18 @@ std::any ScopePopulator::visitFunctionDecl(threeboltParser::FunctionDeclContext 
     std::cout << "Entering scope: " << in->get_longname() << std::endl;
 
     // validate params are not already defined
+    // TODO: this should probably be done in the visit to params, but this function scope is not defined yet :/
+    //          could also get more accurate error column then as well.
     for (auto& symbol : paramSymbols) {
         if (scopeStack.top()->find_symbol(symbol.ID)) {
             errorLogger.logError(std::format("Symbol {} already defined in this or previous scope.", symbol.ID), ctx->parameters()->getStart()->getLine(), ctx->parameters()->getStart()->getCharPositionInLine());
+            continue;
         }
         scopeStack.top()->add_symbol(std::make_shared<Symbol>(symbol.ID, symbol.type));
     }
+
+    // visit function body
+    visit(ctx->block());
 
     // pop current scope
     scopeStack.pop();
@@ -109,4 +118,33 @@ std::any ScopePopulator::visitParameter(threeboltParser::ParameterContext *ctx) 
 
 std::any ScopePopulator::visitType(threeboltParser::TypeContext *ctx) {
     return str_to_type(ctx->getText());
+}
+
+std::any ScopePopulator::visitIfStmt(threeboltParser::IfStmtContext *ctx) {
+    // if statements create a new scope
+    // we don't care about other semantics right now; only resolution
+    auto& top = scopeStack.top();
+    auto shortname = top->get_longname();
+
+    // if-statement block
+    push_scope(std::to_string(top->scopeCount++));
+    visit(ctx->block());
+    scopeStack.pop();
+
+    // all if-else blocks
+    for (auto block : ctx->elseIfStmt()) {
+        push_scope(std::to_string(top->scopeCount++));
+
+        visit(block);
+        scopeStack.pop();
+    }
+
+    // else block
+    if (ctx->elseStmt()) {
+        push_scope(std::to_string(top->scopeCount++));
+        visit(ctx->elseStmt());
+        scopeStack.pop();
+    }
+
+    return ctx;
 }

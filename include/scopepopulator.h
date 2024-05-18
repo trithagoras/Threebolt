@@ -4,17 +4,20 @@
 #include "scope.h"
 #include <memory>
 #include "errorlogger.h"
+#include "scopetable.h"
 
 class ScopePopulator : public threeboltBaseVisitor {
-    std::stack<std::unique_ptr<Scope>> scopeStack;
+private:
+    std::stack<std::shared_ptr<Scope>> scopeStack;
     ErrorLogger& errorLogger;
+    ScopeTable& scopeTable;
 
 public:
-    ScopePopulator(ErrorLogger& errorLogger) : errorLogger(errorLogger) {
-        scopeStack.push(std::make_unique<Scope>("global"));
+    ScopePopulator(ErrorLogger& errorLogger, ScopeTable& scopeTable) : errorLogger(errorLogger), scopeTable(scopeTable) {
+        scopeStack.push(std::make_shared<Scope>("global"));
     }
 
-    // std::any visitProgram(threeboltParser::ProgramContext *ctx) override;
+    void push_scope(const std::string& name);
 
     /// @brief Returns ??
     /// @param ctx 
@@ -23,10 +26,18 @@ public:
 
     /// @brief 
     /// @param ctx 
-    /// @return A std::vector<std::string> of the TYPE names of each parameter
+    /// @return A std::vector<Symbol> of the currently proposed definition of each parameter
     std::any visitParameters(threeboltParser::ParametersContext *ctx) override;
 
+    /// @brief 
+    /// @param ctx 
+    /// @return A Symbol with the name and proposed type
     std::any visitParameter(threeboltParser::ParameterContext *ctx) override;
 
+    /// @brief 
+    /// @param ctx 
+    /// @return The Type value 
     std::any visitType(threeboltParser::TypeContext *ctx) override;
+
+    std::any visitIfStmt(threeboltParser::IfStmtContext *ctx) override;
 };

@@ -15,6 +15,9 @@ fn complex_scope(x: int) {
 
     if x < 5 {
         let z := y - x;
+    } else if (x < 6) {
+        let z := y + x;
+        let p := 'c';
     } else {
         if y > 10 {
             let z := x - y;
@@ -22,11 +25,11 @@ fn complex_scope(x: int) {
     }
 }
 
-fn sum(x: char, x: int) {
+fn sum(x: char, y: int) {
     return x + y;
 }
 
-fn main() {
+fn main2() {
     return;
 }
 

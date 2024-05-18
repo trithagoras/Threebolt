@@ -6,16 +6,17 @@
 
 /// @brief A scope with a nullptr parent is inferred to be the global scope.
 class Scope {
+private:
     Scope* parent;
     std::map<std::string, std::shared_ptr<Symbol>> symbolTable;
 
     /// @brief longname is how the identifiers belonging to this scope are stored in the symbolTable. .e.g. global_main referes to the main function.
     std::string longname;
 
+public:
     /// @brief Scope count helps construct the longname of the scope, and subsequently, the longname of each symbol.
     int scopeCount;
 
-public:
     Scope(std::string name) : Scope(name, nullptr) {};
     Scope(std::string name, Scope* parent);
 

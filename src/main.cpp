@@ -26,10 +26,17 @@ int main(int argc, char **argv) {
     auto tree = parser.program();
 
     ErrorLogger errorLogger;
+    ScopeTable scopeTable;
 
     // initial walk (populating scopes and symbol tables)
-    auto visitor = ScopePopulator(errorLogger);
+    auto visitor = ScopePopulator(errorLogger, scopeTable);
     visitor.visit(tree);
+
+    std::cout << "Symbol Table population complete." << std::endl;
+
+    for (auto& [name, scope] : scopeTable.get_scopes()) {
+        std::cout << name << std::endl;
+    }
 
     // print errors relating to symbols and scopes
     if (errorLogger.hasErrors()) {
