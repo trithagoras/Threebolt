@@ -27,7 +27,6 @@ public:
     std::any visitParameter(threeboltParser::ParameterContext *ctx) override;
     std::any visitType(threeboltParser::TypeContext *ctx) override;
     std::any visitBlock(threeboltParser::BlockContext *ctx) override;
-    // std::any visitStatement(threeboltParser::StatementContext *ctx) override;
     std::any visitIfStmt(threeboltParser::IfStmtContext *ctx) override;
     std::any visitElseIfStmt(threeboltParser::ElseIfStmtContext *ctx) override;
     std::any visitElseStmt(threeboltParser::ElseStmtContext *ctx) override;

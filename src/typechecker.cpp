@@ -81,9 +81,21 @@ std::any TypeChecker::visitVariableDecl(threeboltParser::VariableDeclContext *ct
 
 std::any TypeChecker::visitAssignment(threeboltParser::AssignmentContext *ctx) {
     // check if lvalue is a declared symbol
+    auto& scope = scopeTable.get_scopes().at(longname);
+    auto symbol = scope->find_symbol(ctx->ID()->getText());
 
-    // if (ctx->ASSIGN)
-    return Type::UNKNOWN;
+    if (!symbol) {
+        errorLogger.logError(std::format("Attempting to assign value to undeclared identifier {}", ctx->ID()->getText()), ctx->getStart()->getLine(), ctx->getStart()->getCharPositionInLine());
+        return Type::UNKNOWN;
+    }
+
+    auto rvalueType = std::any_cast<Type>(visit(ctx->expr()));
+    if (!coerce(symbol->type, rvalueType)) {
+        errorLogger.logError(std::format("Unable to coerce value of type {} to expected type {}", type_to_str(rvalueType), type_to_str(symbol->type)), ctx->getStart()->getLine(), ctx->getStart()->getCharPositionInLine());
+        return Type::UNKNOWN;
+    }
+    
+    return Type::VOID;
 }
 
 std::any TypeChecker::visitFunctionCall(threeboltParser::FunctionCallContext *ctx) {
@@ -183,7 +195,7 @@ std::any TypeChecker::visitExpr(threeboltParser::ExprContext *ctx) {
         auto rhs = std::any_cast<Type>(visit(expr[1]));
         auto t = coerce(lhs, rhs);
         if (t == Type::UNKNOWN) {
-            errorLogger.logError(std::format("Cannot get type of expression: {}+{}", expr[0]->getText(), expr[1]->getText()), ctx->getStart()->getLine(), ctx->getStart()->getCharPositionInLine());
+            errorLogger.logError(std::format("Cannot get type of expression: ({}:{})+({}:{})", expr[0]->getText(), type_to_str(lhs), expr[1]->getText(), type_to_str(rhs)), ctx->getStart()->getLine(), ctx->getStart()->getCharPositionInLine());
         }
         return t;
     }
@@ -193,7 +205,7 @@ std::any TypeChecker::visitExpr(threeboltParser::ExprContext *ctx) {
         auto rhs = std::any_cast<Type>(visit(expr[1]));
         auto t = coerce(lhs, rhs);
         if (t == Type::UNKNOWN) {
-            errorLogger.logError(std::format("Cannot get type of expression: {}-{}", expr[0]->getText(), expr[1]->getText()), ctx->getStart()->getLine(), ctx->getStart()->getCharPositionInLine());
+            errorLogger.logError(std::format("Cannot get type of expression: ({}:{})-({}:{})", expr[0]->getText(), type_to_str(lhs), expr[1]->getText(), type_to_str(rhs)), ctx->getStart()->getLine(), ctx->getStart()->getCharPositionInLine());
         }
         return t;
     }
@@ -203,7 +215,7 @@ std::any TypeChecker::visitExpr(threeboltParser::ExprContext *ctx) {
         auto rhs = std::any_cast<Type>(visit(expr[1]));
         auto t = coerce(lhs, rhs);
         if (t == Type::UNKNOWN) {
-            errorLogger.logError(std::format("Cannot get type of expression: {}*{}", expr[0]->getText(), expr[1]->getText()), ctx->getStart()->getLine(), ctx->getStart()->getCharPositionInLine());
+            errorLogger.logError(std::format("Cannot get type of expression: ({}:{})*({}:{})", expr[0]->getText(), type_to_str(lhs), expr[1]->getText(), type_to_str(rhs)), ctx->getStart()->getLine(), ctx->getStart()->getCharPositionInLine());
         }
         return t;
     }
@@ -213,7 +225,7 @@ std::any TypeChecker::visitExpr(threeboltParser::ExprContext *ctx) {
         auto rhs = std::any_cast<Type>(visit(expr[1]));
         auto t = coerce(lhs, rhs);
         if (t == Type::UNKNOWN) {
-            errorLogger.logError(std::format("Cannot get type of expression: {}/{}", expr[0]->getText(), expr[1]->getText()), ctx->getStart()->getLine(), ctx->getStart()->getCharPositionInLine());
+            errorLogger.logError(std::format("Cannot get type of expression: ({}:{})/({}:{})", expr[0]->getText(), type_to_str(lhs), expr[1]->getText(), type_to_str(rhs)), ctx->getStart()->getLine(), ctx->getStart()->getCharPositionInLine());
         }
         return t;
     }
@@ -224,7 +236,7 @@ std::any TypeChecker::visitExpr(threeboltParser::ExprContext *ctx) {
         auto rhs = std::any_cast<Type>(visit(expr[1]));
         auto t = coerce(lhs, rhs);
         if (t == Type::UNKNOWN) {
-            errorLogger.logError(std::format("Cannot get type of expression: {}%{}", expr[0]->getText(), expr[1]->getText()), ctx->getStart()->getLine(), ctx->getStart()->getCharPositionInLine());
+            errorLogger.logError(std::format("Cannot get type of expression: ({}:{})%({}:{})", expr[0]->getText(), type_to_str(lhs), expr[1]->getText(), type_to_str(rhs)), ctx->getStart()->getLine(), ctx->getStart()->getCharPositionInLine());
         }
         return t;
     }
@@ -235,7 +247,7 @@ std::any TypeChecker::visitExpr(threeboltParser::ExprContext *ctx) {
         auto rhs = std::any_cast<Type>(visit(expr[1]));
         auto t = coerce(lhs, rhs);
         if (t == Type::UNKNOWN) {
-            errorLogger.logError(std::format("Cannot get type of expression: {}=={}", expr[0]->getText(), expr[1]->getText()), ctx->getStart()->getLine(), ctx->getStart()->getCharPositionInLine());
+            errorLogger.logError(std::format("Cannot get type of expression: ({}:{})==({}:{})", expr[0]->getText(), type_to_str(lhs), expr[1]->getText(), type_to_str(rhs)), ctx->getStart()->getLine(), ctx->getStart()->getCharPositionInLine());
         }
         return Type::BOOL;
     }
@@ -245,7 +257,7 @@ std::any TypeChecker::visitExpr(threeboltParser::ExprContext *ctx) {
         auto rhs = std::any_cast<Type>(visit(expr[1]));
         auto t = coerce(lhs, rhs);
         if (t == Type::UNKNOWN) {
-            errorLogger.logError(std::format("Cannot get type of expression: {}!={}", expr[0]->getText(), expr[1]->getText()), ctx->getStart()->getLine(), ctx->getStart()->getCharPositionInLine());
+            errorLogger.logError(std::format("Cannot get type of expression: ({}:{})!=({}:{})", expr[0]->getText(), type_to_str(lhs), expr[1]->getText(), type_to_str(rhs)), ctx->getStart()->getLine(), ctx->getStart()->getCharPositionInLine());
         }
         return Type::BOOL;
     }
@@ -255,7 +267,7 @@ std::any TypeChecker::visitExpr(threeboltParser::ExprContext *ctx) {
         auto rhs = std::any_cast<Type>(visit(expr[1]));
         auto t = coerce(lhs, rhs);
         if (t == Type::UNKNOWN) {
-            errorLogger.logError(std::format("Cannot get type of expression: {}<={}", expr[0]->getText(), expr[1]->getText()), ctx->getStart()->getLine(), ctx->getStart()->getCharPositionInLine());
+            errorLogger.logError(std::format("Cannot get type of expression: ({}:{})<=({}:{})", expr[0]->getText(), type_to_str(lhs), expr[1]->getText(), type_to_str(rhs)), ctx->getStart()->getLine(), ctx->getStart()->getCharPositionInLine());
         }
         return Type::BOOL;
     }
@@ -265,7 +277,7 @@ std::any TypeChecker::visitExpr(threeboltParser::ExprContext *ctx) {
         auto rhs = std::any_cast<Type>(visit(expr[1]));
         auto t = coerce(lhs, rhs);
         if (t == Type::UNKNOWN) {
-            errorLogger.logError(std::format("Cannot get type of expression: {}<{}", expr[0]->getText(), expr[1]->getText()), ctx->getStart()->getLine(), ctx->getStart()->getCharPositionInLine());
+            errorLogger.logError(std::format("Cannot get type of expression: ({}:{})<({}:{})", expr[0]->getText(), type_to_str(lhs), expr[1]->getText(), type_to_str(rhs)), ctx->getStart()->getLine(), ctx->getStart()->getCharPositionInLine());
         }
         return Type::BOOL;
     }
@@ -275,7 +287,7 @@ std::any TypeChecker::visitExpr(threeboltParser::ExprContext *ctx) {
         auto rhs = std::any_cast<Type>(visit(expr[1]));
         auto t = coerce(lhs, rhs);
         if (t == Type::UNKNOWN) {
-            errorLogger.logError(std::format("Cannot get type of expression: {}>{}", expr[0]->getText(), expr[1]->getText()), ctx->getStart()->getLine(), ctx->getStart()->getCharPositionInLine());
+            errorLogger.logError(std::format("Cannot get type of expression: ({}:{})>({}:{})", expr[0]->getText(), type_to_str(lhs), expr[1]->getText(), type_to_str(rhs)), ctx->getStart()->getLine(), ctx->getStart()->getCharPositionInLine());
         }
         return Type::BOOL;
     }
@@ -285,7 +297,7 @@ std::any TypeChecker::visitExpr(threeboltParser::ExprContext *ctx) {
         auto rhs = std::any_cast<Type>(visit(expr[1]));
         auto t = coerce(lhs, rhs);
         if (t == Type::UNKNOWN) {
-            errorLogger.logError(std::format("Cannot get type of expression: {}>={}", expr[0]->getText(), expr[1]->getText()), ctx->getStart()->getLine(), ctx->getStart()->getCharPositionInLine());
+            errorLogger.logError(std::format("Cannot get type of expression: ({}:{})>=({}:{})", expr[0]->getText(), type_to_str(lhs), expr[1]->getText(), type_to_str(rhs)), ctx->getStart()->getLine(), ctx->getStart()->getCharPositionInLine());
         }
         return Type::BOOL;
     }
