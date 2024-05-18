@@ -78,63 +78,64 @@ void threeboltParserInitialize() {
     }
   );
   static const int32_t serializedATNSegment[] = {
-  	4,1,48,182,2,0,7,0,2,1,7,1,2,2,7,2,2,3,7,3,2,4,7,4,2,5,7,5,2,6,7,6,2,
+  	4,1,48,184,2,0,7,0,2,1,7,1,2,2,7,2,2,3,7,3,2,4,7,4,2,5,7,5,2,6,7,6,2,
   	7,7,7,2,8,7,8,2,9,7,9,2,10,7,10,2,11,7,11,2,12,7,12,2,13,7,13,2,14,7,
   	14,2,15,7,15,2,16,7,16,2,17,7,17,2,18,7,18,1,0,1,0,1,0,5,0,42,8,0,10,
   	0,12,0,45,9,0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,2,1,2,1,2,1,2,3,2,59,
   	8,2,1,2,1,2,1,2,3,2,64,8,2,1,2,1,2,1,3,1,3,1,3,5,3,71,8,3,10,3,12,3,74,
   	9,3,1,4,1,4,1,4,1,4,1,5,1,5,5,5,82,8,5,10,5,12,5,85,9,5,1,5,1,5,1,6,1,
   	6,1,6,1,6,1,6,3,6,94,8,6,1,7,1,7,1,7,1,7,3,7,100,8,7,1,7,1,7,1,7,1,7,
-  	1,8,1,8,1,8,1,8,1,8,1,9,1,9,1,10,1,10,1,10,1,10,1,11,1,11,1,11,1,11,5,
-  	11,121,8,11,10,11,12,11,124,9,11,1,11,3,11,127,8,11,1,12,1,12,1,12,1,
-  	12,1,12,1,13,1,13,1,13,1,14,1,14,1,14,1,15,1,15,1,15,1,15,1,15,1,15,1,
-  	15,1,15,1,15,1,15,1,15,1,15,3,15,152,8,15,1,15,1,15,1,15,1,15,1,15,1,
-  	15,5,15,160,8,15,10,15,12,15,163,9,15,1,16,1,16,1,16,3,16,168,8,16,1,
-  	16,1,16,1,17,1,17,1,17,5,17,175,8,17,10,17,12,17,178,9,17,1,18,1,18,1,
-  	18,0,1,30,19,0,2,4,6,8,10,12,14,16,18,20,22,24,26,28,30,32,34,36,0,4,
-  	2,0,28,31,39,39,1,0,23,27,1,0,33,38,1,0,10,13,187,0,43,1,0,0,0,2,46,1,
-  	0,0,0,4,54,1,0,0,0,6,67,1,0,0,0,8,75,1,0,0,0,10,79,1,0,0,0,12,93,1,0,
-  	0,0,14,95,1,0,0,0,16,105,1,0,0,0,18,110,1,0,0,0,20,112,1,0,0,0,22,116,
-  	1,0,0,0,24,128,1,0,0,0,26,133,1,0,0,0,28,136,1,0,0,0,30,151,1,0,0,0,32,
-  	164,1,0,0,0,34,171,1,0,0,0,36,179,1,0,0,0,38,42,3,12,6,0,39,42,3,4,2,
-  	0,40,42,3,2,1,0,41,38,1,0,0,0,41,39,1,0,0,0,41,40,1,0,0,0,42,45,1,0,0,
-  	0,43,41,1,0,0,0,43,44,1,0,0,0,44,1,1,0,0,0,45,43,1,0,0,0,46,47,5,1,0,
-  	0,47,48,5,14,0,0,48,49,5,48,0,0,49,50,5,14,0,0,50,51,5,2,0,0,51,52,5,
-  	25,0,0,52,53,5,41,0,0,53,3,1,0,0,0,54,55,5,3,0,0,55,56,5,14,0,0,56,58,
-  	5,43,0,0,57,59,3,6,3,0,58,57,1,0,0,0,58,59,1,0,0,0,59,60,1,0,0,0,60,63,
-  	5,44,0,0,61,62,5,47,0,0,62,64,3,36,18,0,63,61,1,0,0,0,63,64,1,0,0,0,64,
-  	65,1,0,0,0,65,66,3,10,5,0,66,5,1,0,0,0,67,72,3,8,4,0,68,69,5,42,0,0,69,
-  	71,3,8,4,0,70,68,1,0,0,0,71,74,1,0,0,0,72,70,1,0,0,0,72,73,1,0,0,0,73,
-  	7,1,0,0,0,74,72,1,0,0,0,75,76,5,14,0,0,76,77,5,40,0,0,77,78,3,36,18,0,
-  	78,9,1,0,0,0,79,83,5,45,0,0,80,82,3,12,6,0,81,80,1,0,0,0,82,85,1,0,0,
-  	0,83,81,1,0,0,0,83,84,1,0,0,0,84,86,1,0,0,0,85,83,1,0,0,0,86,87,5,46,
-  	0,0,87,11,1,0,0,0,88,94,3,14,7,0,89,94,3,16,8,0,90,94,3,20,10,0,91,94,
-  	3,22,11,0,92,94,3,28,14,0,93,88,1,0,0,0,93,89,1,0,0,0,93,90,1,0,0,0,93,
-  	91,1,0,0,0,93,92,1,0,0,0,94,13,1,0,0,0,95,96,5,4,0,0,96,97,5,14,0,0,97,
-  	99,5,40,0,0,98,100,3,36,18,0,99,98,1,0,0,0,99,100,1,0,0,0,100,101,1,0,
-  	0,0,101,102,5,39,0,0,102,103,3,30,15,0,103,104,5,41,0,0,104,15,1,0,0,
-  	0,105,106,5,14,0,0,106,107,3,18,9,0,107,108,3,30,15,0,108,109,5,41,0,
-  	0,109,17,1,0,0,0,110,111,7,0,0,0,111,19,1,0,0,0,112,113,5,5,0,0,113,114,
-  	3,30,15,0,114,115,5,41,0,0,115,21,1,0,0,0,116,117,5,6,0,0,117,118,3,30,
-  	15,0,118,122,3,10,5,0,119,121,3,24,12,0,120,119,1,0,0,0,121,124,1,0,0,
-  	0,122,120,1,0,0,0,122,123,1,0,0,0,123,126,1,0,0,0,124,122,1,0,0,0,125,
-  	127,3,26,13,0,126,125,1,0,0,0,126,127,1,0,0,0,127,23,1,0,0,0,128,129,
-  	5,7,0,0,129,130,5,6,0,0,130,131,3,30,15,0,131,132,3,10,5,0,132,25,1,0,
-  	0,0,133,134,5,7,0,0,134,135,3,10,5,0,135,27,1,0,0,0,136,137,3,30,15,0,
-  	137,138,5,41,0,0,138,29,1,0,0,0,139,140,6,15,-1,0,140,152,5,14,0,0,141,
-  	152,5,15,0,0,142,152,5,16,0,0,143,152,5,17,0,0,144,152,5,18,0,0,145,152,
-  	5,19,0,0,146,152,3,32,16,0,147,148,5,43,0,0,148,149,3,30,15,0,149,150,
-  	5,44,0,0,150,152,1,0,0,0,151,139,1,0,0,0,151,141,1,0,0,0,151,142,1,0,
-  	0,0,151,143,1,0,0,0,151,144,1,0,0,0,151,145,1,0,0,0,151,146,1,0,0,0,151,
-  	147,1,0,0,0,152,161,1,0,0,0,153,154,10,10,0,0,154,155,7,1,0,0,155,160,
-  	3,30,15,11,156,157,10,9,0,0,157,158,7,2,0,0,158,160,3,30,15,10,159,153,
-  	1,0,0,0,159,156,1,0,0,0,160,163,1,0,0,0,161,159,1,0,0,0,161,162,1,0,0,
-  	0,162,31,1,0,0,0,163,161,1,0,0,0,164,165,5,14,0,0,165,167,5,43,0,0,166,
-  	168,3,34,17,0,167,166,1,0,0,0,167,168,1,0,0,0,168,169,1,0,0,0,169,170,
-  	5,44,0,0,170,33,1,0,0,0,171,176,3,30,15,0,172,173,5,42,0,0,173,175,3,
-  	30,15,0,174,172,1,0,0,0,175,178,1,0,0,0,176,174,1,0,0,0,176,177,1,0,0,
-  	0,177,35,1,0,0,0,178,176,1,0,0,0,179,180,7,3,0,0,180,37,1,0,0,0,15,41,
-  	43,58,63,72,83,93,99,122,126,151,159,161,167,176
+  	1,8,1,8,1,8,1,8,1,8,1,9,1,9,1,10,1,10,3,10,115,8,10,1,10,1,10,1,11,1,
+  	11,1,11,1,11,5,11,123,8,11,10,11,12,11,126,9,11,1,11,3,11,129,8,11,1,
+  	12,1,12,1,12,1,12,1,12,1,13,1,13,1,13,1,14,1,14,1,14,1,15,1,15,1,15,1,
+  	15,1,15,1,15,1,15,1,15,1,15,1,15,1,15,1,15,3,15,154,8,15,1,15,1,15,1,
+  	15,1,15,1,15,1,15,5,15,162,8,15,10,15,12,15,165,9,15,1,16,1,16,1,16,3,
+  	16,170,8,16,1,16,1,16,1,17,1,17,1,17,5,17,177,8,17,10,17,12,17,180,9,
+  	17,1,18,1,18,1,18,0,1,30,19,0,2,4,6,8,10,12,14,16,18,20,22,24,26,28,30,
+  	32,34,36,0,4,2,0,28,31,39,39,1,0,23,27,1,0,33,38,1,0,10,13,190,0,43,1,
+  	0,0,0,2,46,1,0,0,0,4,54,1,0,0,0,6,67,1,0,0,0,8,75,1,0,0,0,10,79,1,0,0,
+  	0,12,93,1,0,0,0,14,95,1,0,0,0,16,105,1,0,0,0,18,110,1,0,0,0,20,112,1,
+  	0,0,0,22,118,1,0,0,0,24,130,1,0,0,0,26,135,1,0,0,0,28,138,1,0,0,0,30,
+  	153,1,0,0,0,32,166,1,0,0,0,34,173,1,0,0,0,36,181,1,0,0,0,38,42,3,12,6,
+  	0,39,42,3,4,2,0,40,42,3,2,1,0,41,38,1,0,0,0,41,39,1,0,0,0,41,40,1,0,0,
+  	0,42,45,1,0,0,0,43,41,1,0,0,0,43,44,1,0,0,0,44,1,1,0,0,0,45,43,1,0,0,
+  	0,46,47,5,1,0,0,47,48,5,14,0,0,48,49,5,48,0,0,49,50,5,14,0,0,50,51,5,
+  	2,0,0,51,52,5,25,0,0,52,53,5,41,0,0,53,3,1,0,0,0,54,55,5,3,0,0,55,56,
+  	5,14,0,0,56,58,5,43,0,0,57,59,3,6,3,0,58,57,1,0,0,0,58,59,1,0,0,0,59,
+  	60,1,0,0,0,60,63,5,44,0,0,61,62,5,47,0,0,62,64,3,36,18,0,63,61,1,0,0,
+  	0,63,64,1,0,0,0,64,65,1,0,0,0,65,66,3,10,5,0,66,5,1,0,0,0,67,72,3,8,4,
+  	0,68,69,5,42,0,0,69,71,3,8,4,0,70,68,1,0,0,0,71,74,1,0,0,0,72,70,1,0,
+  	0,0,72,73,1,0,0,0,73,7,1,0,0,0,74,72,1,0,0,0,75,76,5,14,0,0,76,77,5,40,
+  	0,0,77,78,3,36,18,0,78,9,1,0,0,0,79,83,5,45,0,0,80,82,3,12,6,0,81,80,
+  	1,0,0,0,82,85,1,0,0,0,83,81,1,0,0,0,83,84,1,0,0,0,84,86,1,0,0,0,85,83,
+  	1,0,0,0,86,87,5,46,0,0,87,11,1,0,0,0,88,94,3,14,7,0,89,94,3,16,8,0,90,
+  	94,3,20,10,0,91,94,3,22,11,0,92,94,3,28,14,0,93,88,1,0,0,0,93,89,1,0,
+  	0,0,93,90,1,0,0,0,93,91,1,0,0,0,93,92,1,0,0,0,94,13,1,0,0,0,95,96,5,4,
+  	0,0,96,97,5,14,0,0,97,99,5,40,0,0,98,100,3,36,18,0,99,98,1,0,0,0,99,100,
+  	1,0,0,0,100,101,1,0,0,0,101,102,5,39,0,0,102,103,3,30,15,0,103,104,5,
+  	41,0,0,104,15,1,0,0,0,105,106,5,14,0,0,106,107,3,18,9,0,107,108,3,30,
+  	15,0,108,109,5,41,0,0,109,17,1,0,0,0,110,111,7,0,0,0,111,19,1,0,0,0,112,
+  	114,5,5,0,0,113,115,3,30,15,0,114,113,1,0,0,0,114,115,1,0,0,0,115,116,
+  	1,0,0,0,116,117,5,41,0,0,117,21,1,0,0,0,118,119,5,6,0,0,119,120,3,30,
+  	15,0,120,124,3,10,5,0,121,123,3,24,12,0,122,121,1,0,0,0,123,126,1,0,0,
+  	0,124,122,1,0,0,0,124,125,1,0,0,0,125,128,1,0,0,0,126,124,1,0,0,0,127,
+  	129,3,26,13,0,128,127,1,0,0,0,128,129,1,0,0,0,129,23,1,0,0,0,130,131,
+  	5,7,0,0,131,132,5,6,0,0,132,133,3,30,15,0,133,134,3,10,5,0,134,25,1,0,
+  	0,0,135,136,5,7,0,0,136,137,3,10,5,0,137,27,1,0,0,0,138,139,3,30,15,0,
+  	139,140,5,41,0,0,140,29,1,0,0,0,141,142,6,15,-1,0,142,154,5,14,0,0,143,
+  	154,5,15,0,0,144,154,5,16,0,0,145,154,5,17,0,0,146,154,5,18,0,0,147,154,
+  	5,19,0,0,148,154,3,32,16,0,149,150,5,43,0,0,150,151,3,30,15,0,151,152,
+  	5,44,0,0,152,154,1,0,0,0,153,141,1,0,0,0,153,143,1,0,0,0,153,144,1,0,
+  	0,0,153,145,1,0,0,0,153,146,1,0,0,0,153,147,1,0,0,0,153,148,1,0,0,0,153,
+  	149,1,0,0,0,154,163,1,0,0,0,155,156,10,10,0,0,156,157,7,1,0,0,157,162,
+  	3,30,15,11,158,159,10,9,0,0,159,160,7,2,0,0,160,162,3,30,15,10,161,155,
+  	1,0,0,0,161,158,1,0,0,0,162,165,1,0,0,0,163,161,1,0,0,0,163,164,1,0,0,
+  	0,164,31,1,0,0,0,165,163,1,0,0,0,166,167,5,14,0,0,167,169,5,43,0,0,168,
+  	170,3,34,17,0,169,168,1,0,0,0,169,170,1,0,0,0,170,171,1,0,0,0,171,172,
+  	5,44,0,0,172,33,1,0,0,0,173,178,3,30,15,0,174,175,5,42,0,0,175,177,3,
+  	30,15,0,176,174,1,0,0,0,177,180,1,0,0,0,178,176,1,0,0,0,178,179,1,0,0,
+  	0,179,35,1,0,0,0,180,178,1,0,0,0,181,182,7,3,0,0,182,37,1,0,0,0,16,41,
+  	43,58,63,72,83,93,99,114,124,128,153,161,163,169,178
   };
   staticData->serializedATN = antlr4::atn::SerializedATNView(serializedATNSegment, sizeof(serializedATNSegment) / sizeof(serializedATNSegment[0]));
 
@@ -1159,12 +1160,12 @@ tree::TerminalNode* threeboltParser::ReturnStmtContext::KEYWORD_RETURN() {
   return getToken(threeboltParser::KEYWORD_RETURN, 0);
 }
 
-threeboltParser::ExprContext* threeboltParser::ReturnStmtContext::expr() {
-  return getRuleContext<threeboltParser::ExprContext>(0);
-}
-
 tree::TerminalNode* threeboltParser::ReturnStmtContext::SEMICOLON() {
   return getToken(threeboltParser::SEMICOLON, 0);
+}
+
+threeboltParser::ExprContext* threeboltParser::ReturnStmtContext::expr() {
+  return getRuleContext<threeboltParser::ExprContext>(0);
 }
 
 
@@ -1195,6 +1196,7 @@ std::any threeboltParser::ReturnStmtContext::accept(tree::ParseTreeVisitor *visi
 threeboltParser::ReturnStmtContext* threeboltParser::returnStmt() {
   ReturnStmtContext *_localctx = _tracker.createInstance<ReturnStmtContext>(_ctx, getState());
   enterRule(_localctx, 20, threeboltParser::RuleReturnStmt);
+  size_t _la = 0;
 
 #if __cplusplus > 201703L
   auto onExit = finally([=, this] {
@@ -1207,9 +1209,16 @@ threeboltParser::ReturnStmtContext* threeboltParser::returnStmt() {
     enterOuterAlt(_localctx, 1);
     setState(112);
     match(threeboltParser::KEYWORD_RETURN);
-    setState(113);
-    expr(0);
     setState(114);
+    _errHandler->sync(this);
+
+    _la = _input->LA(1);
+    if ((((_la & ~ 0x3fULL) == 0) &&
+      ((1ULL << _la) & 8796094054400) != 0)) {
+      setState(113);
+      expr(0);
+    }
+    setState(116);
     match(threeboltParser::SEMICOLON);
    
   }
@@ -1292,30 +1301,30 @@ threeboltParser::IfStmtContext* threeboltParser::ifStmt() {
   try {
     size_t alt;
     enterOuterAlt(_localctx, 1);
-    setState(116);
-    match(threeboltParser::KEYWORD_IF);
-    setState(117);
-    expr(0);
     setState(118);
+    match(threeboltParser::KEYWORD_IF);
+    setState(119);
+    expr(0);
+    setState(120);
     block();
-    setState(122);
+    setState(124);
     _errHandler->sync(this);
-    alt = getInterpreter<atn::ParserATNSimulator>()->adaptivePredict(_input, 8, _ctx);
+    alt = getInterpreter<atn::ParserATNSimulator>()->adaptivePredict(_input, 9, _ctx);
     while (alt != 2 && alt != atn::ATN::INVALID_ALT_NUMBER) {
       if (alt == 1) {
-        setState(119);
+        setState(121);
         elseIfStmt(); 
       }
-      setState(124);
+      setState(126);
       _errHandler->sync(this);
-      alt = getInterpreter<atn::ParserATNSimulator>()->adaptivePredict(_input, 8, _ctx);
+      alt = getInterpreter<atn::ParserATNSimulator>()->adaptivePredict(_input, 9, _ctx);
     }
-    setState(126);
+    setState(128);
     _errHandler->sync(this);
 
     _la = _input->LA(1);
     if (_la == threeboltParser::KEYWORD_ELSE) {
-      setState(125);
+      setState(127);
       elseStmt();
     }
    
@@ -1389,13 +1398,13 @@ threeboltParser::ElseIfStmtContext* threeboltParser::elseIfStmt() {
   });
   try {
     enterOuterAlt(_localctx, 1);
-    setState(128);
-    match(threeboltParser::KEYWORD_ELSE);
-    setState(129);
-    match(threeboltParser::KEYWORD_IF);
     setState(130);
-    expr(0);
+    match(threeboltParser::KEYWORD_ELSE);
     setState(131);
+    match(threeboltParser::KEYWORD_IF);
+    setState(132);
+    expr(0);
+    setState(133);
     block();
    
   }
@@ -1460,9 +1469,9 @@ threeboltParser::ElseStmtContext* threeboltParser::elseStmt() {
   });
   try {
     enterOuterAlt(_localctx, 1);
-    setState(133);
+    setState(135);
     match(threeboltParser::KEYWORD_ELSE);
-    setState(134);
+    setState(136);
     block();
    
   }
@@ -1527,9 +1536,9 @@ threeboltParser::ExprStmtContext* threeboltParser::exprStmt() {
   });
   try {
     enterOuterAlt(_localctx, 1);
-    setState(136);
+    setState(138);
     expr(0);
-    setState(137);
+    setState(139);
     match(threeboltParser::SEMICOLON);
    
   }
@@ -1687,57 +1696,57 @@ threeboltParser::ExprContext* threeboltParser::expr(int precedence) {
   try {
     size_t alt;
     enterOuterAlt(_localctx, 1);
-    setState(151);
+    setState(153);
     _errHandler->sync(this);
-    switch (getInterpreter<atn::ParserATNSimulator>()->adaptivePredict(_input, 10, _ctx)) {
+    switch (getInterpreter<atn::ParserATNSimulator>()->adaptivePredict(_input, 11, _ctx)) {
     case 1: {
-      setState(140);
+      setState(142);
       match(threeboltParser::ID);
       break;
     }
 
     case 2: {
-      setState(141);
+      setState(143);
       match(threeboltParser::INT_LITERAL);
       break;
     }
 
     case 3: {
-      setState(142);
+      setState(144);
       match(threeboltParser::FLOAT_LITERAL);
       break;
     }
 
     case 4: {
-      setState(143);
+      setState(145);
       match(threeboltParser::CHAR_LITERAL);
       break;
     }
 
     case 5: {
-      setState(144);
+      setState(146);
       match(threeboltParser::BOOL_LITERAL);
       break;
     }
 
     case 6: {
-      setState(145);
+      setState(147);
       match(threeboltParser::STRING_LITERAL);
       break;
     }
 
     case 7: {
-      setState(146);
+      setState(148);
       functionCall();
       break;
     }
 
     case 8: {
-      setState(147);
-      match(threeboltParser::LPAREN);
-      setState(148);
-      expr(0);
       setState(149);
+      match(threeboltParser::LPAREN);
+      setState(150);
+      expr(0);
+      setState(151);
       match(threeboltParser::RPAREN);
       break;
     }
@@ -1746,24 +1755,24 @@ threeboltParser::ExprContext* threeboltParser::expr(int precedence) {
       break;
     }
     _ctx->stop = _input->LT(-1);
-    setState(161);
+    setState(163);
     _errHandler->sync(this);
-    alt = getInterpreter<atn::ParserATNSimulator>()->adaptivePredict(_input, 12, _ctx);
+    alt = getInterpreter<atn::ParserATNSimulator>()->adaptivePredict(_input, 13, _ctx);
     while (alt != 2 && alt != atn::ATN::INVALID_ALT_NUMBER) {
       if (alt == 1) {
         if (!_parseListeners.empty())
           triggerExitRuleEvent();
         previousContext = _localctx;
-        setState(159);
+        setState(161);
         _errHandler->sync(this);
-        switch (getInterpreter<atn::ParserATNSimulator>()->adaptivePredict(_input, 11, _ctx)) {
+        switch (getInterpreter<atn::ParserATNSimulator>()->adaptivePredict(_input, 12, _ctx)) {
         case 1: {
           _localctx = _tracker.createInstance<ExprContext>(parentContext, parentState);
           pushNewRecursionContext(_localctx, startState, RuleExpr);
-          setState(153);
+          setState(155);
 
           if (!(precpred(_ctx, 10))) throw FailedPredicateException(this, "precpred(_ctx, 10)");
-          setState(154);
+          setState(156);
           _la = _input->LA(1);
           if (!((((_la & ~ 0x3fULL) == 0) &&
             ((1ULL << _la) & 260046848) != 0))) {
@@ -1773,7 +1782,7 @@ threeboltParser::ExprContext* threeboltParser::expr(int precedence) {
             _errHandler->reportMatch(this);
             consume();
           }
-          setState(155);
+          setState(157);
           expr(11);
           break;
         }
@@ -1781,10 +1790,10 @@ threeboltParser::ExprContext* threeboltParser::expr(int precedence) {
         case 2: {
           _localctx = _tracker.createInstance<ExprContext>(parentContext, parentState);
           pushNewRecursionContext(_localctx, startState, RuleExpr);
-          setState(156);
+          setState(158);
 
           if (!(precpred(_ctx, 9))) throw FailedPredicateException(this, "precpred(_ctx, 9)");
-          setState(157);
+          setState(159);
           _la = _input->LA(1);
           if (!((((_la & ~ 0x3fULL) == 0) &&
             ((1ULL << _la) & 541165879296) != 0))) {
@@ -1794,7 +1803,7 @@ threeboltParser::ExprContext* threeboltParser::expr(int precedence) {
             _errHandler->reportMatch(this);
             consume();
           }
-          setState(158);
+          setState(160);
           expr(10);
           break;
         }
@@ -1803,9 +1812,9 @@ threeboltParser::ExprContext* threeboltParser::expr(int precedence) {
           break;
         } 
       }
-      setState(163);
+      setState(165);
       _errHandler->sync(this);
-      alt = getInterpreter<atn::ParserATNSimulator>()->adaptivePredict(_input, 12, _ctx);
+      alt = getInterpreter<atn::ParserATNSimulator>()->adaptivePredict(_input, 13, _ctx);
     }
   }
   catch (RecognitionException &e) {
@@ -1877,20 +1886,20 @@ threeboltParser::FunctionCallContext* threeboltParser::functionCall() {
   });
   try {
     enterOuterAlt(_localctx, 1);
-    setState(164);
+    setState(166);
     match(threeboltParser::ID);
-    setState(165);
-    match(threeboltParser::LPAREN);
     setState(167);
+    match(threeboltParser::LPAREN);
+    setState(169);
     _errHandler->sync(this);
 
     _la = _input->LA(1);
     if ((((_la & ~ 0x3fULL) == 0) &&
       ((1ULL << _la) & 8796094054400) != 0)) {
-      setState(166);
+      setState(168);
       arguments();
     }
-    setState(169);
+    setState(171);
     match(threeboltParser::RPAREN);
    
   }
@@ -1964,17 +1973,17 @@ threeboltParser::ArgumentsContext* threeboltParser::arguments() {
   });
   try {
     enterOuterAlt(_localctx, 1);
-    setState(171);
+    setState(173);
     expr(0);
-    setState(176);
+    setState(178);
     _errHandler->sync(this);
     _la = _input->LA(1);
     while (_la == threeboltParser::COMMA) {
-      setState(172);
+      setState(174);
       match(threeboltParser::COMMA);
-      setState(173);
+      setState(175);
       expr(0);
-      setState(178);
+      setState(180);
       _errHandler->sync(this);
       _la = _input->LA(1);
     }
@@ -2050,7 +2059,7 @@ threeboltParser::TypeContext* threeboltParser::type() {
   });
   try {
     enterOuterAlt(_localctx, 1);
-    setState(179);
+    setState(181);
     _la = _input->LA(1);
     if (!((((_la & ~ 0x3fULL) == 0) &&
       ((1ULL << _la) & 15360) != 0))) {

@@ -57,7 +57,7 @@ std::any ScopePopulator::visitFunctionDecl(threeboltParser::FunctionDeclContext 
 
     // check if symbol already defined in this scope (or any parent scope)
     if (!scopeStack.empty() && scopeStack.top()->find_symbol(shortname)) {
-        throw std::runtime_error(std::format("Symbol {} already defined in this or previous scope.", shortname));
+        errorLogger.logError(std::format("Symbol {} already defined in this or previous scope.", shortname), ctx->getStart()->getLine(), ctx->getStart()->getCharPositionInLine());
     }
     scopeStack.top()->add_symbol(std::make_shared<Symbol>(shortname, Type::FN));
 
@@ -73,7 +73,7 @@ std::any ScopePopulator::visitFunctionDecl(threeboltParser::FunctionDeclContext 
     // validate params are not already defined
     for (auto& symbol : paramSymbols) {
         if (scopeStack.top()->find_symbol(symbol.ID)) {
-            throw std::runtime_error(std::format("Symbol {} already defined in this or previous scope.", symbol.ID));
+            errorLogger.logError(std::format("Symbol {} already defined in this or previous scope.", symbol.ID), ctx->parameters()->getStart()->getLine(), ctx->parameters()->getStart()->getCharPositionInLine());
         }
         scopeStack.top()->add_symbol(std::make_shared<Symbol>(symbol.ID, symbol.type));
     }

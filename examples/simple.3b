@@ -26,6 +26,10 @@ fn sum(x: char, x: int) {
     return x + y;
 }
 
+fn main() {
+    return;
+}
+
 /*
 scope and symbol table id construction:
 

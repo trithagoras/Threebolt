@@ -4,6 +4,7 @@
 #include "threeboltParser.h"
 #include "scopepopulator.h"
 #include "scope.h"
+#include "errorlogger.h"
 
 int main(int argc, char **argv) {
     if (argc != 2) {
@@ -24,8 +25,18 @@ int main(int argc, char **argv) {
     auto parser = threeboltParser(&tokens);
     auto tree = parser.program();
 
+    ErrorLogger errorLogger;
+
     // initial walk (populating scopes and symbol tables)
-    auto visitor = ScopePopulator();
+    auto visitor = ScopePopulator(errorLogger);
     visitor.visit(tree);
+
+    // print errors relating to symbols and scopes
+    if (errorLogger.hasErrors()) {
+        errorLogger.printErrors();
+        return 1;
+    }
+
+
     return 0;
 }

@@ -85,7 +85,7 @@ assignmentOperator
     | DIVEQ
     ;
 
-returnStmt: KEYWORD_RETURN expr SEMICOLON;
+returnStmt: KEYWORD_RETURN expr? SEMICOLON;
 
 ifStmt
     : KEYWORD_IF expr block elseIfStmt* elseStmt?

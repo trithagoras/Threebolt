@@ -3,12 +3,14 @@
 #include "threeboltBaseVisitor.h"
 #include "scope.h"
 #include <memory>
+#include "errorlogger.h"
 
 class ScopePopulator : public threeboltBaseVisitor {
     std::stack<std::unique_ptr<Scope>> scopeStack;
+    ErrorLogger& errorLogger;
 
 public:
-    ScopePopulator() {
+    ScopePopulator(ErrorLogger& errorLogger) : errorLogger(errorLogger) {
         scopeStack.push(std::make_unique<Scope>("global"));
     }
 
