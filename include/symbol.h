@@ -7,6 +7,7 @@ enum Type {
     INT,
     CHAR,
     FN,
+    FLOAT,
     // ...
 };
 

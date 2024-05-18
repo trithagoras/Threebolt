@@ -22,7 +22,7 @@ fn complex_scope(x: int) {
     }
 }
 
-fn sum(x: char, y: int) {
+fn sum(x: char, x: int) {
     return x + y;
 }
 
