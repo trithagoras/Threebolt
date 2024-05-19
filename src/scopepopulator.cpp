@@ -38,7 +38,9 @@ std::any ScopePopulator::visitFunctionDecl(threeboltParser::FunctionDeclContext 
     if (scopeStack.top()->find_symbol(shortname)) {
         errorLogger.logError(std::format("Symbol {} already defined in this or previous scope.", shortname), ctx->getStart()->getLine(), ctx->getStart()->getCharPositionInLine());
     } else {
-        scopeStack.top()->add_symbol(std::make_shared<Symbol>(shortname, Type::FN));
+        auto symbol = std::make_shared<Symbol>(shortname, Type::FN);
+        symbol->fnCtx = ctx;
+        scopeStack.top()->add_symbol(symbol);
     }
 
     // create new scope and push it onto the stack
@@ -55,7 +57,9 @@ std::any ScopePopulator::visitFunctionDecl(threeboltParser::FunctionDeclContext 
             errorLogger.logError(std::format("Symbol {} already defined in this or previous scope.", symbol.ID), ctx->parameters()->getStart()->getLine(), ctx->parameters()->getStart()->getCharPositionInLine());
             continue;
         }
-        scopeStack.top()->add_symbol(std::make_shared<Symbol>(symbol.ID, symbol.type));
+        auto symbol2 = std::make_shared<Symbol>(symbol.ID, symbol.type);
+        symbol2->fnCtx = ctx;
+        scopeStack.top()->add_symbol(symbol2);
     }
 
     // visit function body
@@ -81,7 +85,9 @@ std::any ScopePopulator::visitParameters(threeboltParser::ParametersContext *ctx
 std::any ScopePopulator::visitParameter(threeboltParser::ParameterContext *ctx) {
     auto type = std::any_cast<Type>(visit(ctx->type()));
     auto id = ctx->ID()->getText();
-    return Symbol(id, type);
+    auto symbol = Symbol(id, type);
+    symbol.paramCtx = ctx;
+    return symbol;
 }
 
 std::any ScopePopulator::visitType(threeboltParser::TypeContext *ctx) {
@@ -123,6 +129,8 @@ std::any ScopePopulator::visitVariableDecl(threeboltParser::VariableDeclContext 
     if (top->find_symbol(id->getText())) {
         errorLogger.logError(std::format("Symbol {} already defined in this or previous scope.", id->getText()), ctx->getStart()->getLine(), ctx->getStart()->getCharPositionInLine());
     }
-    scopeStack.top()->add_symbol(std::make_shared<Symbol>(ctx->ID()->getText(), Type::UNKNOWN));
+    auto symbol = std::make_shared<Symbol>(ctx->ID()->getText(), Type::UNKNOWN);
+    symbol->varCtx = ctx;
+    scopeStack.top()->add_symbol(symbol);
     return ctx;
 }

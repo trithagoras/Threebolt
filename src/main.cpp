@@ -7,6 +7,8 @@
 #include "errorlogger.h"
 #include "typechecker.h"
 #include "interpreter.h"
+#include <set>
+#include <format>
 
 int main(int argc, char **argv) {
     if (argc != 2) {
@@ -47,6 +49,20 @@ int main(int argc, char **argv) {
     auto typeChecker = TypeChecker(errorLogger, scopeTable);
     typeChecker.visit(tree);
     std::cout << "Type checking complete." << std::endl;
+
+    // check there are absolutely no unknown types at this point
+    std::set<Symbol*> symbols;
+    for (auto& [_, scope] : scopeTable.get_scopes()) {
+        for (auto& [_, symbol] : scope->get_all_symbols_in_scope()) {
+            symbols.insert(symbol.get());
+        }
+    }
+    for (auto symbol : symbols) {
+        if (symbol->type == Type::UNKNOWN) {
+            auto [line, col] = symbol->get_declr_pos();
+            errorLogger.logError(std::format("Symbol {} (first declared line {}, column {}) has an unknown type. This indicates other type deduction errors and this message should go away when all other type errors are resolved.", symbol->ID, line, col));
+        }
+    }
 
     // print errors relating to type checking
     if (errorLogger.hasErrors()) {

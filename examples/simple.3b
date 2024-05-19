@@ -32,6 +32,8 @@ fn complex_scope(x: int) -> float {
     } else if (x < 6) {
         let z := y + x;
         let p := 'c';
+        let g := p + z;
+        let f := g - false;
         p = 5;
         return 5.315123 + p;
     } else {
